@@ -359,3 +359,4 @@ WpfUi/obj/WpfUi.csproj.nuget.g.props
 WpfUi/obj/WpfUi.csproj.nuget.g.targets
 WpfUi/WpfUi.csproj
 WpfUi/WpfUi.csproj.user
+*.lref
