@@ -1,4 +1,14 @@
 # Synth5
 
-Aims
-Migrate UI to WPF, Modulation Matrix and Patch Recall
+Planned Features
+- Migrate UI to WPF
+- Possibly skins/themes
+- Modulation Matrix
+- Patch Recall
+
+
+Synth6 and Beyond
+- Additive Synthesis
+- FM
+- Drum Synthesis
+- Sequencing
