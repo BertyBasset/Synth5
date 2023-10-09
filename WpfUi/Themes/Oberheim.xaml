@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:custom="clr-namespace:SynthCustomControls;assembly=SynthCustomControls">
+
+    <!-- Apply any window styling -->
+    <Style TargetType="Canvas">
+        <Setter Property="Background" Value="#8f0080"/>        <!-- Leave Background for Window to set -->
+    </Style>
+
+    <!-- Define a SolidColorBrush for the FillBrush -->
+    <RadialGradientBrush x:Key="KnobFillBrush" Center=".62,.62">
+        <GradientStop Color="Purple" Offset="0" />
+        <GradientStop Color="Black" Offset="1.0" />
+    </RadialGradientBrush>
+
+    <!-- Define the custom control style -->
+    <Style TargetType="custom:Knob">
+        <!-- Assign a null value to ManualCaptionFontSize using x:Null -->
+        <Setter Property="OutlineWidth" Value="2"/>
+        <Setter Property="OutlineColor" Value="DarkOrange"/>
+        <Setter Property="MarkerWidth" Value="1"/>
+        <Setter Property="MarkerColor" Value="DarkOrange"/>
+        <Setter Property="MarkerStyle" Value="Dot"/>
+        <Setter Property="DotFillColor" Value="black"/>
+
+        <Setter Property="ShowTicks" Value="True" />
+        <Setter Property="TickColor" Value="MediumPurple" />
+        <Setter Property="FillBrush" Value="{StaticResource KnobFillBrush}"/>
+        <Setter Property="AnnotationMode" Value="LabelsAuto"></Setter>
+        <Setter Property="AnnotationTextColor" Value="MediumPurple"></Setter>
+        <Setter Property="CaptionColor" Value="MediumPurple"></Setter>
+        <Setter Property="ManualCaptionFontSize" Value="9"></Setter>
+        
+    </Style>
+
+</ResourceDictionary>
+
+    

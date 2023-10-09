@@ -13,12 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfUi {
+namespace WpfUi.Modules
+{
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for VCO.xaml
     /// </summary>
-    public partial class MainWindow : Window {
-        public MainWindow() {
+    public partial class VCO : UserControl
+    {
+        public VCO()
+        {
             InitializeComponent();
         }
     }

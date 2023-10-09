@@ -7,4 +7,35 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="KnobResources\Saw.png" />
+    <None Remove="KnobResources\Sine.png" />
+    <None Remove="KnobResources\Square.png" />
+    <None Remove="KnobResources\SuperSaw.png" />
+    <None Remove="KnobResources\Triangle.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Themes\Prophet.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Wpf\SynthCustomControls\SynthCustomControls\SynthCustomControls.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="KnobResources\Saw.png" />
+    <Resource Include="KnobResources\Sine.png" />
+    <Resource Include="KnobResources\Square.png" />
+    <Resource Include="KnobResources\SuperSaw.png" />
+    <Resource Include="KnobResources\Triangle.png" />
+    <Resource Include="Themes\Prophet.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Dlls\SynthCustomControls.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -1,15 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//#define test          // Uncomment to show TestWindow
+
+
 using System.Windows;
 
 namespace WpfUi {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application {
+
+        private void Application_Startup(object sender, StartupEventArgs e) {
+
+#if test            
+            TestWindow wnd = new() {
+                Title = "My App"
+            };
+            wnd.Show();
+#else
+
+            Synth wnd = new() {
+                Title = "Synth"
+            };
+            wnd.Show();
+#endif
+        }
     }
 }
