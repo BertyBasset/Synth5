@@ -369,3 +369,9 @@ WpfUi/WpfUi.csproj.user
 /KnobUC/obj/Debug
 /KnobUC
 /KnobUI
+/Synth.Console/obj/Release/net6.0-windows
+/Synth.Core/obj/Release/net6.0
+/Synth.Keyboard/obj/Release/net6.0
+/Synth.Modules/obj/Release/net6.0-windows
+/Synth.Patch/obj/Release/net6.0-windows
+/WpfUi/bin/Release/net6.0-windows
