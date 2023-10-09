@@ -360,3 +360,12 @@ WpfUi/obj/WpfUi.csproj.nuget.g.targets
 WpfUi/WpfUi.csproj
 WpfUi/WpfUi.csproj.user
 *.lref
+/.vs/Synth/FileContentIndex
+/KnobUC/.vs/KnobUC/v17/.suo
+/WpfUi/bin/Debug/net6.0-windows
+/WpfUi/obj
+/KnobUI/obj/Debug
+/KnobUI/.vs/KnobUI
+/KnobUC/obj/Debug
+/KnobUC
+/KnobUI
