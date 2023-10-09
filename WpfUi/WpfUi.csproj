@@ -20,7 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Wpf\SynthCustomControls\SynthCustomControls\SynthCustomControls.csproj" />
+    <Reference Include="SynthCustomControls">
+      <HintPath>Dlls\SynthCustomControls.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

@@ -4,7 +4,7 @@
 
     <!-- Apply any window styling -->
     <Style TargetType="Canvas">
-        <Setter Property="Background" Value="#8f0080"/>        <!-- Leave Background for Window to set -->
+        <Setter Property="Background" Value="#080020"/>        <!-- Leave Background for Window to set -->
     </Style>
 
     <!-- Define a SolidColorBrush for the FillBrush -->
