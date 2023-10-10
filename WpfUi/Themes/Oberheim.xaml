@@ -27,7 +27,7 @@
         <Setter Property="TickColor" Value="MediumPurple" />
         <Setter Property="FillBrush" Value="{StaticResource KnobFillBrush}"/>
         <Setter Property="AnnotationMode" Value="LabelsAuto"></Setter>
-        <Setter Property="AnnotationTextColor" Value="MediumPurple"></Setter>
+        <Setter Property="AnnotationColor" Value="MediumPurple"></Setter>
         <Setter Property="CaptionColor" Value="MediumPurple"></Setter>
         <Setter Property="ManualCaptionFontSize" Value="9"></Setter>
         

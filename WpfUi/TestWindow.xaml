@@ -14,13 +14,8 @@
         </ResourceDictionary>
     </Window.Resources>
 
-
     <Canvas Margin="0,0,-27,-39">
         <custom:Knob Canvas.Top="30" Canvas.Left="50" Name="knob1" Height="100"  ValueMin="0" ValueMax="5"></custom:Knob>
         <custom:Knob Canvas.Top="30" Canvas.Left="200" Name="knob2" Height="100" ValueMin="0" ValueMax="5"></custom:Knob>
-
-
-
     </Canvas>
-
 </Window>

@@ -28,7 +28,7 @@
         <Setter Property="FillBrush" Value="{StaticResource KnobFillBrush}"/>
         <Setter Property="AnnotationMode" Value="LabelsAuto"></Setter>
         <Setter Property="ManualAnnotationFontSize" Value="9"></Setter>
-        <Setter Property="AnnotationTextColor" Value="YEllow"></Setter>
+        <Setter Property="AnnotationColor" Value="LightSeaGreen"></Setter>
         <Setter Property="CaptionColor" Value="Yellow"></Setter>
         <Setter Property="ManualCaptionFontSize" Value="10"></Setter>
         
