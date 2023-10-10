@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="WpfUi.Modules.VCO"
+﻿
+    <UserControl x:Class="WpfUi.Modules.VCO"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +8,9 @@
              xmlns:local="clr-namespace:WpfUi.Modules"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="320">
+             d:DesignHeight="330" d:DesignWidth="95"
+             Width="330" Height="95"
+    >
 
     <UserControl.Resources>
         <!-- Waveform Images -->
@@ -18,52 +21,60 @@
         <BitmapImage x:Key="Icon_Triangle" UriSource="/KnobResources/Triangle.png" />
     </UserControl.Resources>
 
+    <Grid>
+        <Border Name="brdBorder" BorderBrush="white" BorderThickness="1" CornerRadius="10">
+            <Grid>
+            <Canvas Margin="5,5,5,5">
 
-    <Canvas Margin="0,0,0,0">
-        <custom:Knob Name="knbFrequency" Canvas.Top="20" Canvas.Left="20" Width="70"  ValueMin="-1" ValueMax="1" Value="0" Height="0" FullSweepAngle="240">
-            <custom:Knob.AnnotationMode>Labels</custom:Knob.AnnotationMode>
-            <custom:Knob.AnnotationLabels>
-                <sys:String>-1</sys:String>
-                <sys:String>&#160;&#160;</sys:String>
-                <sys:String>&#160;&#160;</sys:String>
-                <sys:String>&#160;&#160;</sys:String>
-                <sys:String>&#160;&#160;</sys:String>
-                <sys:String>0</sys:String>
-                <sys:String>&#160;&#160;</sys:String>
-                <sys:String>&#160;&#160;</sys:String>
-                <sys:String>&#160;&#160;</sys:String>
-                <sys:String>&#160;&#160;</sys:String>
-                <sys:String>+1</sys:String>
-            </custom:Knob.AnnotationLabels>
-            <custom:Knob.Caption>FREQUENCY</custom:Knob.Caption>
+                <custom:Knob Name="knbFrequency" Canvas.Top="8" Canvas.Left="0" Width="70"  ValueMin="-1" ValueMax="1" Value="0" Height="0" FullSweepAngle="240">
+                    <custom:Knob.AnnotationMode>Labels</custom:Knob.AnnotationMode>
+                    <custom:Knob.AnnotationLabels>
+                        <sys:String>-1</sys:String>
+                        <sys:String>&#160;&#160;</sys:String>
+                        <sys:String>&#160;&#160;</sys:String>
+                        <sys:String>&#160;&#160;</sys:String>
+                        <sys:String>&#160;&#160;</sys:String>
+                        <sys:String>0</sys:String>
+                        <sys:String>&#160;&#160;</sys:String>
+                        <sys:String>&#160;&#160;</sys:String>
+                        <sys:String>&#160;&#160;</sys:String>
+                        <sys:String>&#160;&#160;</sys:String>
+                        <sys:String>+1</sys:String>
+                    </custom:Knob.AnnotationLabels>
+                    <custom:Knob.Caption>FREQUENCY</custom:Knob.Caption>
 
-        </custom:Knob>
+                </custom:Knob>
 
-        <custom:Knob Name="knbOctave" Canvas.Top="20" Canvas.Left="100" Width="70" ValueMin="0" ValueMax="3" NumPositions="4" FullSweepAngle="90" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
-            <custom:Knob.Caption>OCTAVE</custom:Knob.Caption>
-        </custom:Knob>
+                <custom:Knob Name="knbOctave" Canvas.Top="8" Canvas.Left="80" Width="70" ValueMin="0" ValueMax="3" NumPositions="4" FullSweepAngle="90" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                    <custom:Knob.Caption>OCTAVE</custom:Knob.Caption>
+                </custom:Knob>
 
-        <custom:Knob Name="knbWaveform" Canvas.Top="20" Canvas.Left="180" Width="70" ValueMin="0" ValueMax="4" NumPositions="5" FullSweepAngle="120" Height="70">
-            <custom:Knob.AnnotationMode>Images</custom:Knob.AnnotationMode>
-            <custom:Knob.Caption>WAVEFORM</custom:Knob.Caption>
-            <custom:Knob.AnnotationImageResourceKeys>
-                <sys:String>Icon_Saw</sys:String>
-                <sys:String>Icon_Sine</sys:String>
-                <sys:String>Icon_Square</sys:String>
-                <sys:String>Icon_SuperSaw</sys:String>
-                <sys:String>Icon_Triangle</sys:String>
-            </custom:Knob.AnnotationImageResourceKeys>
-            <custom:Knob.ManualAnnotationRadius>1.7</custom:Knob.ManualAnnotationRadius>
-        </custom:Knob>
+                <custom:Knob Name="knbWaveform" Canvas.Top="8" Canvas.Left="160" Width="70" ValueMin="0" ValueMax="4" NumPositions="5" FullSweepAngle="120" Height="70">
+                    <custom:Knob.AnnotationMode>Images</custom:Knob.AnnotationMode>
+                    <custom:Knob.Caption>WAVEFORM</custom:Knob.Caption>
+                    <custom:Knob.AnnotationImageResourceKeys>
+                        <sys:String>Icon_Saw</sys:String>
+                        <sys:String>Icon_Sine</sys:String>
+                        <sys:String>Icon_Square</sys:String>
+                        <sys:String>Icon_SuperSaw</sys:String>
+                        <sys:String>Icon_Triangle</sys:String>
+                    </custom:Knob.AnnotationImageResourceKeys>
+                    <custom:Knob.ManualAnnotationRadius>1.7</custom:Knob.ManualAnnotationRadius>
+                </custom:Knob>
 
-        <custom:Knob Name="knbPulseWidth" Canvas.Top="20" Canvas.Left="260" Width="70"  ValueMin="-1" ValueMax="1" Value="0" Height="70" FullSweepAngle="240">
-            <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
-            <custom:Knob.Caption>PULSE WIDTH</custom:Knob.Caption>
-        </custom:Knob>
+                <custom:Knob Name="knbPulseWidth" Canvas.Top="8" Canvas.Left="240" Width="70"  ValueMin="-1" ValueMax="1" Value="0" Height="70" FullSweepAngle="240">
+                    <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                    <custom:Knob.Caption>PULSE WIDTH</custom:Knob.Caption>
+                </custom:Knob>
 
 
-    </Canvas>
-
+            </Canvas>
+            <!-- Centered Caption -->
+            <TextBlock Name = "lblCaption" Text="MyText" Foreground="White" Background="black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-10,0,0"/>
+            </Grid>
+        </Border>
+           
+    </Grid>
 
 </UserControl>
