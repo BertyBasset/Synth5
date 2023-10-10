@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </Window.Resources>    
     <Canvas>
-        <local:VCO CaptionBrush="pink" BorderColor="yellow" BorderWidth=".5" BorderRadius="30" Caption=" VCO 1 " Canvas.Left="5" Canvas.Top="10" />
+        <local:VCO Frequency=".5" Octave="2" Waveform="4" PulseWidth=".7" Caption=" VCO 1 " Canvas.Left="5" Canvas.Top="10" />
         <local:VCO Caption=" VCO 2 " Canvas.Left="5" Canvas.Top="115" />
         <local:VCO Caption=" VCO 3 " Canvas.Left="5" Canvas.Top="220" />
         <local:VCO Caption=" VCO 4 " Canvas.Left="5" Canvas.Top="325" />
