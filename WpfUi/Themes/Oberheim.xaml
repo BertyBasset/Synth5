@@ -30,6 +30,13 @@
         <Setter Property="AnnotationColor" Value="MediumPurple"></Setter>
         <Setter Property="CaptionColor" Value="MediumPurple"></Setter>
         <Setter Property="ManualCaptionFontSize" Value="9"></Setter>
+    </Style>
+
+    <Style TargetType="custom:Led">
+        <Setter Property="OutlineWidth" Value="1"/>
+        <Setter Property="OutlineColor" Value="#800000" />
+        <Setter Property="FillBrushOn" Value="red" />
+        <Setter Property="FillBrushOff" Value="#400000" />
         
     </Style>
 

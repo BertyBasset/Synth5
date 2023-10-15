@@ -1,0 +1,46 @@
+﻿
+    <UserControl x:Class="WpfUi.Modules.BitCrush
+                 "
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:custom="clr-namespace:SynthCustomControls;assembly=SynthCustomControls"
+             xmlns:local="clr-namespace:WpfUi.Modules"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="330" d:DesignWidth="95"
+             Width="80" Height="200"
+    >
+
+
+
+    <Grid>
+        <Border Name="brdBorder" BorderBrush="white" BorderThickness="1" CornerRadius="10">
+            <Grid>
+            <Canvas Margin="5,5,5,5">
+
+                <custom:Knob Name="knbSampleRate" Canvas.Top="8" Canvas.Left="0" Width="70"  ValueMin="0" ValueMax="5" Value="0" Height="0" FullSweepAngle="240">
+                    <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                    <custom:Knob.Caption>SAMPLE RATE</custom:Knob.Caption>
+                </custom:Knob>
+
+                <custom:Knob Name="knbResolution" Canvas.Top="113" Canvas.Left="0" Width="70" ValueMin="0" ValueMax="5" FullSweepAngle="240" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                    <custom:Knob.Caption>RESOLUTION</custom:Knob.Caption>
+                </custom:Knob>
+
+
+
+                    <custom:Led Name="ledSelect" Canvas.Top="0" Canvas.Left="-2" Width="12" ToggleOnClick="true"></custom:Led>
+
+
+            </Canvas>
+            <!-- Centered Caption -->
+            <TextBlock Name = "lblCaption" Text="MyText" Foreground="White" Background="black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-10,0,0"/>
+            </Grid>
+        </Border>
+           
+    </Grid>
+
+</UserControl>

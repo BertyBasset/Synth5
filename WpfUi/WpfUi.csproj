@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="KnobResources\ReverseSaw.png" />
     <None Remove="KnobResources\Saw.png" />
+    <None Remove="KnobResources\SH.png" />
     <None Remove="KnobResources\Sine.png" />
     <None Remove="KnobResources\Square.png" />
     <None Remove="KnobResources\SuperSaw.png" />
@@ -17,6 +19,33 @@
 
   <ItemGroup>
     <Page Remove="Themes\Prophet.xaml" />
+    <Page Remove="Themes\Waldorf.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="KnobResources\ReverseSaw.png" />
+    <Resource Include="KnobResources\Saw.png" />
+    <Resource Include="KnobResources\SH.png" />
+    <Resource Include="KnobResources\Sine.png" />
+    <Resource Include="KnobResources\Square.png" />
+    <Resource Include="KnobResources\SuperSaw.png" />
+    <Resource Include="KnobResources\Triangle.png" />
+    <Resource Include="Themes\Prophet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="Themes\Waldorf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dlls\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Synth.Modules\Synth.Modules.csproj" />
+    <ProjectReference Include="..\Synth.Patch\Synth.Patch.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,16 +55,27 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="KnobResources\Saw.png" />
-    <Resource Include="KnobResources\Sine.png" />
-    <Resource Include="KnobResources\Square.png" />
-    <Resource Include="KnobResources\SuperSaw.png" />
-    <Resource Include="KnobResources\Triangle.png" />
-    <Resource Include="Themes\Prophet.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Dlls\" />
+    <Compile Update="Modules\Keyboard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Modules\BitCrush.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Modules\MIxer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Modules\ADSR.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Modules\DualLfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Modules\VCF.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Modules\Effects.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

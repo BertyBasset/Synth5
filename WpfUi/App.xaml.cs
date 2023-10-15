@@ -15,7 +15,7 @@ namespace WpfUi {
             wnd.Show();
 #else
 
-            Synth wnd = new() {
+            SynthUI wnd = new() {
                 Title = "Synth"
             };
             wnd.Show();

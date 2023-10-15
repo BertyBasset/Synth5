@@ -1,0 +1,93 @@
+﻿
+    <UserControl x:Class="WpfUi.Modules.DualLfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:custom="clr-namespace:SynthCustomControls;assembly=SynthCustomControls"
+             xmlns:local="clr-namespace:WpfUi.Modules"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="330" d:DesignWidth="95"
+             Width="514" Height="95"
+    >
+    <UserControl.Resources>
+        <!-- Waveform Images -->
+        <BitmapImage x:Key="Icon_Sine" UriSource="/KnobResources/Sine.png" />
+        <BitmapImage x:Key="Icon_Saw" UriSource="/KnobResources/Saw.png" />
+        <BitmapImage x:Key="Icon_ReverseSaw" UriSource="/KnobResources/ReverseSaw.png" />
+        <BitmapImage x:Key="Icon_Triangle" UriSource="/KnobResources/Triangle.png" />
+        <BitmapImage x:Key="Icon_Square" UriSource="/KnobResources/Square.png" />
+        <BitmapImage x:Key="Icon_SH" UriSource="/KnobResources/SH.png" />
+    </UserControl.Resources>
+ 
+
+    <Grid>
+        <Border Name="brdBorder" BorderBrush="white" BorderThickness="1" CornerRadius="10">
+            <Grid>
+                <Canvas Margin="5,5,5,5">
+
+                    <custom:Knob Name="knbRate1" Canvas.Top="8" Canvas.Left="0" Width="70"  ValueMin="0" ValueMax="1" Value="0" Height="0" FullSweepAngle="240">
+                        <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                        <custom:Knob.Caption> RATE 1</custom:Knob.Caption>
+                    </custom:Knob>
+
+                    <custom:Knob Name="knbShape1" Canvas.Top="8" Canvas.Left="90" Width="70" ValueMin="0" ValueMax="5" NumPositions="6" FullSweepAngle="180" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <custom:Knob.AnnotationMode>Images</custom:Knob.AnnotationMode>
+                        <custom:Knob.AnnotationImageResourceKeys>
+                            <sys:String>Icon_Sine</sys:String>
+                            <sys:String>Icon_Saw</sys:String>
+                            <sys:String>Icon_ReverseSaw</sys:String>
+                            <sys:String>Icon_Triangle</sys:String>
+                            <sys:String>Icon_Square</sys:String>
+                            <sys:String>Icon_SH</sys:String>
+                        </custom:Knob.AnnotationImageResourceKeys>
+                        <custom:Knob.ManualAnnotationRadius>1.7</custom:Knob.ManualAnnotationRadius>
+                        <custom:Knob.Caption>SHAPE 1</custom:Knob.Caption>
+                    </custom:Knob>
+
+                    <custom:Knob Name="knbDelay1" Canvas.Top="8" Canvas.Left="179" Width="70"  ValueMin="0" ValueMax="5" Value="0" Height="0" FullSweepAngle="240">
+                        <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                        <custom:Knob.Caption>DELAY 1</custom:Knob.Caption>
+                    </custom:Knob>
+
+
+
+                    <custom:Knob Name="knbRate2" Canvas.Top="8" Canvas.Left="264" Width="70" ValueMin="0" ValueMax="1" FullSweepAngle="240" Height="70">
+                        <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                        <custom:Knob.Caption>RATE 2</custom:Knob.Caption>
+                    </custom:Knob>
+
+                    <custom:Knob Name="knbShape2" Canvas.Top="8" Canvas.Left="349" Width="70"  ValueMin="0" ValueMax="5" NumPositions="6" Value="0" Height="70" FullSweepAngle="180">
+                        <custom:Knob.AnnotationMode>Images</custom:Knob.AnnotationMode>
+                        <custom:Knob.AnnotationImageResourceKeys>
+                            <sys:String>Icon_Sine</sys:String>
+                            <sys:String>Icon_Saw</sys:String>
+                            <sys:String>Icon_ReverseSaw</sys:String>
+                            <sys:String>Icon_Triangle</sys:String>
+                            <sys:String>Icon_Square</sys:String>
+                            <sys:String>Icon_SH</sys:String>
+                        </custom:Knob.AnnotationImageResourceKeys>
+                        <custom:Knob.ManualAnnotationRadius>1.7</custom:Knob.ManualAnnotationRadius>
+                        <custom:Knob.Caption>SHAPE 2</custom:Knob.Caption>
+                    </custom:Knob>
+
+                    <custom:Knob Name="knbDelay2" Canvas.Top="8" Canvas.Left="433" Width="70"  ValueMin="0" ValueMax="5" Value="0" Height="0" FullSweepAngle="240">
+                        <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                        <custom:Knob.Caption>DELAY 2</custom:Knob.Caption>
+                    </custom:Knob>
+
+                    <TextBlock  Canvas.Left="85"  Name = "lblCaption1" Text=" LFO1 / CLOCK " Foreground="White" Background="black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-15,0,0"/>
+                    <TextBlock Canvas.Left="366" Name = "lblCaption2" Text=" LFO2 " Foreground="White" Background="black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-15,0,0"/>
+                    <Line X1="15" Y1="84" X2="235" Y2="84" Stroke="white" StrokeThickness=".8" />
+                    <Line X1="275" Y1="84" X2="490" Y2="84" Stroke="white" StrokeThickness=".8" />
+
+                    <custom:Led Name="ledSelect" Canvas.Top="-2" Canvas.Left="-2" Width="12" ToggleOnClick="true"></custom:Led>
+                </Canvas>
+
+            </Grid>
+        </Border>
+           
+    </Grid>
+
+</UserControl>

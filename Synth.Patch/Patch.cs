@@ -18,27 +18,30 @@ public class Patch {
     readonly PolyKeyboard polyKbd = new(NUM_VOICES);
 
     // Voice Level Modules
-    readonly List<Voice> voices = Enumerable.Range(0, NUM_VOICES).Select(i => new Voice()).ToList();        //
-    readonly List<VCO> vco1 = Enumerable.Range(0, NUM_VOICES).Select(i => new VCO()).ToList();        // { WaveFormType = VCOWaveformType.SuperSaw }).ToList();
-    readonly List<VCO> vco2 = Enumerable.Range(0, NUM_VOICES).Select(i => new VCO()).ToList();        // { WaveFormType = VCOWaveformType.Square}).ToList();
-    readonly List<VCO> vco3 = Enumerable.Range(0, NUM_VOICES).Select(i => new VCO()).ToList();        // { WaveFormType = VCOWaveformType.Saw }).ToList();
-    readonly List<Noise> noise = Enumerable.Range(0, NUM_VOICES).Select(i => new Noise()).ToList();
-    readonly List<Mixer> vcoMixer = Enumerable.Range(0, NUM_VOICES).Select(i => new Mixer()).ToList();
-    readonly List<BitCrusher> crusher=Enumerable.Range(0, NUM_VOICES).Select(i => new BitCrusher()).ToList();
-    readonly List<EnvGen> envVcf = Enumerable.Range(0, NUM_VOICES).Select(i => new EnvGen() ).ToList();
-    readonly List<VCF> vcf = Enumerable.Range(0, NUM_VOICES).Select(i => new VCF() ).ToList();
-    readonly List<EnvGen> envVca = Enumerable.Range(0, NUM_VOICES).Select(i => new EnvGen() ).ToList();
-    readonly List<VCA> vca = Enumerable.Range(0, NUM_VOICES).Select(i => new VCA()).ToList();
-    readonly List<AudioOut> voiceOut = Enumerable.Range(0, NUM_VOICES).Select(i => new AudioOut()).ToList();
+    readonly List<Voice>      voices   = Enumerable.Range(0, NUM_VOICES).Select(i => new Voice()).ToList();        //
+    readonly List<VCO>        vco1     = Enumerable.Range(0, NUM_VOICES).Select(i => new VCO()).ToList();        // { WaveFormType = VCOWaveformType.SuperSaw }).ToList();
+    readonly List<VCO>        vco2     = Enumerable.Range(0, NUM_VOICES).Select(i => new VCO()).ToList();        // { WaveFormType = VCOWaveformType.Square}).ToList();
+    readonly List<VCO>        vco3     = Enumerable.Range(0, NUM_VOICES).Select(i => new VCO()).ToList();        // { WaveFormType = VCOWaveformType.Saw }).ToList();
+    readonly List<Noise>      noise    = Enumerable.Range(0, NUM_VOICES).Select(i => new Noise()).ToList();
+    readonly List<Mixer>      vcoMixer = Enumerable.Range(0, NUM_VOICES).Select(i => new Mixer()).ToList();
+    readonly List<BitCrusher> crusher  = Enumerable.Range(0, NUM_VOICES).Select(i => new BitCrusher()).ToList();
+    readonly List<EnvGen>     envVcf   = Enumerable.Range(0, NUM_VOICES).Select(i => new EnvGen() ).ToList();
+    readonly List<VCF>        vcf      = Enumerable.Range(0, NUM_VOICES).Select(i => new VCF() ).ToList();
+    readonly List<EnvGen>     envVca   = Enumerable.Range(0, NUM_VOICES).Select(i => new EnvGen() ).ToList();
+    readonly List<VCA>        vca      = Enumerable.Range(0, NUM_VOICES).Select(i => new VCA()).ToList();
+    readonly List<AudioOut>   voiceOut = Enumerable.Range(0, NUM_VOICES).Select(i => new AudioOut()).ToList();
+    // These 2 not patched to anything but will use mod matrix
+    readonly List<EnvGen>     env1     = Enumerable.Range(0, NUM_VOICES).Select(i => new EnvGen()).ToList();
+    readonly List<EnvGen>     env2     = Enumerable.Range(0, NUM_VOICES).Select(i => new EnvGen()).ToList();
 
 
     // Synth Level Modules
     readonly MidiControllers mc = new();
-    readonly Mixer voiceMixer = new ();
-    readonly Effects effects = new () { EffectType = Enums.EffectType.FeedbackComb, Mix = -.7, Param1 = .6, Param2 = .6 };
-    readonly AudioOut audioOut = new();
-    readonly LFO lfo1 = new ();          // Lfos are module level because we want same waveform for all voices
-    readonly LFO lfo2 = new();
+    readonly Mixer           voiceMixer = new ();
+    readonly Effects         effects = new () { EffectType = Enums.EffectType.FeedbackComb, Mix = -.7, Param1 = .6, Param2 = .6 };
+    readonly AudioOut        audioOut = new();
+    readonly LFO             lfo1 = new ();          // Lfos are module level because we want same waveform for all voices
+    readonly LFO             lfo2 = new();
     #endregion
 
     #region Initiallse 2 - Patch modules together and add them either to a separate voice, or to the Synth Engine
@@ -70,7 +73,9 @@ public class Patch {
                 vcf[i],
                 envVca[i],
                 vca[i],
-                voiceOut[i]
+                voiceOut[i],
+                env1[i],
+                env2[i]
             });
 
             engine.Modules.Add(voice);
@@ -112,58 +117,60 @@ public class Patch {
         engine.Modules.Add(audioOut);
         engine.Modules.Add(lfo1);
         engine.Modules.Add(lfo2);
+
+
     }
     #endregion
 
     #region Module Properties
     #region Oscillators
-    public int Vco1_Octave {
+    public int Vco1Octave {
         set => vco1.ForEach(vco => vco.Frequency.Octave = value);
-        get => vco1.FirstOrDefault().Frequency.Octave;
+        get => vco1.FirstOrDefault()!.Frequency.Octave;
     }
-    public double Vco1_FineTune { 
+    public double Vco1FineTune { 
         set => vco1.ForEach (vco => vco.Frequency.FineTune = value);
-        get => vco1.FirstOrDefault().Frequency.FineTune;
+        get => vco1.FirstOrDefault()!.Frequency.FineTune;
     }
-    public double Vco1_PulseWidth {
+    public double Vco1PulseWidth {
         set => vco1.ForEach(vco => vco.Duty.Value = value);
-        get => vco1.FirstOrDefault().Duty.Value;
+        get => vco1.FirstOrDefault()!.Duty.Value;
     }
-    public VCOWaveformType Vco1_WaveFormType {
+    public VCOWaveformType Vco1WaveFormType {
         set => vco1.ForEach(vco => vco.WaveFormType = value);
-        get => vco1.FirstOrDefault().WaveFormType;
+        get => vco1.FirstOrDefault()!.WaveFormType;
     }
-    public int Vco2_Octave {
+    public int Vco2Octave {
         set => vco2.ForEach(vco => vco.Frequency.Octave = value);
-        get => vco2.FirstOrDefault().Frequency.Octave;
+        get => vco2.FirstOrDefault()!.Frequency.Octave;
     }
-    public double Vco2_FineTune {
+    public double Vco2FineTune {
         set => vco2.ForEach(vco => vco.Frequency.FineTune = value);
-        get => vco2.FirstOrDefault().Frequency.FineTune;
+        get => vco2.FirstOrDefault()!.Frequency.FineTune;
     }
-    public double Vco2_PulseWidth {
+    public double Vco2PulseWidth {
         set => vco2.ForEach(vco => vco.Duty.Value = value);
-        get => vco2.FirstOrDefault().Duty.Value;
+        get => vco2.FirstOrDefault()!.Duty.Value;
     }
-    public VCOWaveformType Vco2_WaveFormType {
+    public VCOWaveformType Vco2WaveFormType {
         set => vco2.ForEach(vco => vco.WaveFormType = value);
-        get => vco2.FirstOrDefault().WaveFormType;
+        get => vco2.FirstOrDefault()!.WaveFormType;
     }
-    public int Vco3_Octave {
+    public int Vco3Octave {
         set => vco3.ForEach(vco => vco.Frequency.Octave = value);
-        get => vco3.FirstOrDefault().Frequency.Octave;
+        get => vco3.FirstOrDefault()!.Frequency.Octave;
     }
-    public double Vco3_FineTune {
+    public double Vco3FineTune {
         set => vco3.ForEach(vco => vco.Frequency.FineTune = value);
-        get => vco3.FirstOrDefault().Frequency.FineTune;
+        get => vco3.FirstOrDefault()!.Frequency.FineTune;
     }
-    public double Vco3_PulseWidth {
+    public double Vco3PulseWidth {
         set => vco3.ForEach(vco => vco.Duty.Value = value);
-        get => vco3.FirstOrDefault().Duty.Value;
+        get => vco3.FirstOrDefault()!.Duty.Value;
     }
-    public VCOWaveformType Vco3_WaveFormType {
+    public VCOWaveformType Vco3WaveFormType {
         set => vco3.ForEach(vco => vco.WaveFormType = value);
-        get => vco3.FirstOrDefault().WaveFormType;
+        get => vco3.FirstOrDefault()!.WaveFormType;
     }
     #endregion
 
@@ -176,113 +183,155 @@ public class Patch {
     }
     public double MixerVco1Level { 
         set => vcoMixer.ForEach(mixer => mixer.Levels[(int)MixerSource.Vco1] = value);
-        get => vcoMixer.FirstOrDefault().Levels[(int)MixerSource.Vco1];
+        get => vcoMixer.FirstOrDefault()!.Levels[(int)MixerSource.Vco1];
     }
     public double MixerVco2Level {
         set => vcoMixer.ForEach(mixer => mixer.Levels[(int)MixerSource.Vco2] = value);
-        get => vcoMixer.FirstOrDefault().Levels[(int)MixerSource.Vco2];
+        get => vcoMixer.FirstOrDefault()!.Levels[(int)MixerSource.Vco2];
 
     }
     public double MixerVco3Level {
         set => vcoMixer.ForEach(mixer => mixer.Levels[(int)MixerSource.Vco3] = value);
-        get => vcoMixer.FirstOrDefault().Levels[(int)MixerSource.Vco3];
+        get => vcoMixer.FirstOrDefault()!.Levels[(int)MixerSource.Vco3];
     }
     public double MixerNoiseLevel {
         set => vcoMixer.ForEach(mixer => mixer.Levels[(int)MixerSource.Noise] = value);
-        get => vcoMixer.FirstOrDefault().Levels[(int)MixerSource.Noise];
+        get => vcoMixer.FirstOrDefault()!.Levels[(int)MixerSource.Noise];
     }
     #endregion
 
     #region BitCrush + Glide
-    public double BitCrush_SampleRate {
+    public double BitCrushSampleRate {
         set => crusher.ForEach(crush => crush.SampleRate = value);
-        get => crusher.FirstOrDefault().SampleRate;
+        get => crusher.FirstOrDefault()!.SampleRate;
     }
 
-    public double BitCrush_Resolution {
+    public double BitCrushResolution {
         set => crusher.ForEach(crush => crush.Resolution = value);
-        get => crusher.FirstOrDefault().Resolution;
+        get => crusher.FirstOrDefault()!.Resolution;
     }
 
     public double Glide {
         set => polyKbd.keys.ForEach(key => key.MonoKeyboard.Glide = value);
-        get => polyKbd.keys.FirstOrDefault().MonoKeyboard.Glide;
+        get => polyKbd.keys.FirstOrDefault()!.MonoKeyboard.Glide;
     }
 
     #endregion
 
     #region VCF + VCF Env
-    public Synth.Enums.FilterType FilterType {
+    public Synth.Enums.FilterType VcfFilterType {
         set => vcf.ForEach(vcf => vcf.FilterType = value);
-        get => vcf.FirstOrDefault().FilterType;
+        get => vcf.FirstOrDefault()!.FilterType;
     }
 
     public double VcfCutoff {
         set => vcf.ForEach(vcf => vcf.Cutoff = value);
-        get => vcf.FirstOrDefault().Cutoff;
+        get => vcf.FirstOrDefault()!.Cutoff;
     }
 
     public double VcfEnvelopeAmount {
         set => vcf.ForEach(vcf => vcf.ModAmount = value);
-        get => vcf.FirstOrDefault().ModAmount;
+        get => vcf.FirstOrDefault()!.ModAmount;
     }
 
     public double VcfRippleFactor {
         set => vcf.ForEach(vcf => vcf.RippleFactor = value);
-        get => vcf.FirstOrDefault().RippleFactor;
+        get => vcf.FirstOrDefault()!.RippleFactor;
     }
 
     public double VcfResonance {
         set => vcf.ForEach(vcf => vcf.Resonance = value);
-        get => vcf.FirstOrDefault().Resonance;
+        get => vcf.FirstOrDefault()!.Resonance;
     }
 
     public double VcfBandwidth {
         set => vcf.ForEach(vcf => vcf.Bandwidth = value);
-        get => vcf.FirstOrDefault().Bandwidth;
+        get => vcf.FirstOrDefault()!.Bandwidth;
+    }
+
+    // General Envelope Env1
+    public double Env1Attack {
+        set => env1.ForEach(vcf => vcf.Attack = value);
+        get => env1.FirstOrDefault()!.Attack;
+    }
+
+    public double Env1Decay {
+        set => env1.ForEach(vcf => vcf.Decay = value);
+        get => env1.FirstOrDefault()!.Decay;
+    }
+
+    public double Env1Sustain {
+        set => env1.ForEach(vcf => vcf.Sustain = value);
+        get => env1.FirstOrDefault()!.Sustain;
+    }
+
+    public double Env1Release {
+        set => env1.ForEach(vcf => vcf.Release = value);
+        get => env1.FirstOrDefault()!.Release;
+    }
+
+    // General Envelope Env2
+    public double Env2Attack {
+        set => env2.ForEach(vcf => vcf.Attack = value);
+        get => env2.FirstOrDefault()!.Attack;
+    }
+
+    public double Env2Decay {
+        set => env2.ForEach(vcf => vcf.Decay = value);
+        get => env2.FirstOrDefault()!.Decay;
+    }
+
+    public double Env2Sustain {
+        set => env2.ForEach(vcf => vcf.Sustain = value);
+        get => env2.FirstOrDefault()!.Sustain;
+    }
+
+    public double Env2Release {
+        set => env2.ForEach(vcf => vcf.Release = value);
+        get => env2.FirstOrDefault()!.Release;
     }
 
     // **** VCF Envelope 
     public double VcfEnvAttack {
         set => envVcf.ForEach(vcf => vcf.Attack = value);
-        get => envVcf.FirstOrDefault().Attack;
+        get => envVcf.FirstOrDefault()!.Attack;
     }
 
     public double VcfEnvDecay {
         set => envVcf.ForEach(vcf => vcf.Decay = value);
-        get => envVcf.FirstOrDefault().Decay;
+        get => envVcf.FirstOrDefault()!.Decay;
     }
 
     public double VcfEnvSustain {
         set => envVcf.ForEach(vcf => vcf.Sustain = value);
-        get => envVcf.FirstOrDefault().Sustain;
+        get => envVcf.FirstOrDefault()!.Sustain;
     }
 
     public double VcfEnvRelease {
         set => envVcf.ForEach(vcf => vcf.Release = value);
-        get => envVcf.FirstOrDefault().Release;
+        get => envVcf.FirstOrDefault()!.Release;
     }
     #endregion
 
     #region VCA + VCA Env
     public double VcaEnvAttack {
         set => envVca.ForEach(vca => vca.Attack = value);
-        get => envVca.FirstOrDefault().Attack;
+        get => envVca.FirstOrDefault()!.Attack;
     }
 
     public double VcaEnvDecay {
         set => envVca.ForEach(vca => vca.Decay = value);
-        get => envVca.FirstOrDefault().Decay;
+        get => envVca.FirstOrDefault()!.Decay;
     }
 
     public double VcaEnvSustain {
         set => envVca.ForEach(vca => vca.Sustain = value);
-        get => envVca.FirstOrDefault().Sustain;
+        get => envVca.FirstOrDefault()!.Sustain;
     }
 
     public double VcaEnvRelease {
         set => envVca.ForEach(vca => vca.Release = value);
-        get => envVca.FirstOrDefault().Release;
+        get => envVca.FirstOrDefault()!.Release;
     }
 
     #endregion
@@ -318,27 +367,36 @@ public class Patch {
         get => engine;
     }
 
-    public double Lfo1_Frequency {
+    public double Lfo1Frequency {
         set => lfo1.Frequency = value;
         get => lfo1.Frequency;
     }
 
-    public LFOWaveformType Lfo1_WaveformType { 
+    public LFOWaveformType Lfo1WaveformType { 
         set => lfo1.Shape.Type = value;
         get => lfo1.Shape.Type;
     }
 
-    public double Lfo2_Frequency {
+    public double Lfo1Delay {
+        set => lfo1.Delay = value;
+        get => lfo1.Delay;
+    }
+
+    public double Lfo2Frequency {
         set => lfo2.Frequency = value;
         get => lfo2.Frequency;
     }
 
-    public LFOWaveformType Lfo2_WaveformType {
+    public LFOWaveformType Lfo2WaveformType {
         set => lfo2.Shape.Type = value;
         get => lfo2.Shape.Type;
     }
 
-  
+    public double Lfo2Delay {
+        set => lfo2.Delay = value;
+        get => lfo2.Delay;
+    }
+
 
 
     #endregion

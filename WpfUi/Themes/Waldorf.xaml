@@ -4,32 +4,32 @@
 
     <!-- Apply any window styling -->
     <Style TargetType="Canvas">
-        <Setter Property="Background" Value="black"/>
+        <Setter Property="Background" Value="yellow"/>
     </Style>
 
     <!-- Define a SolidColorBrush for the FillBrush -->
     <RadialGradientBrush x:Key="KnobFillBrush" Center=".62,.62">
-        <GradientStop Color="silver" Offset="0" />
-        <GradientStop Color="Black" Offset="1.0" />
+        <GradientStop Color="cyan" Offset="0" />
+        <GradientStop Color="navy" Offset="1.0" />
     </RadialGradientBrush>
     
     <!-- Define the custom control style -->
     <Style TargetType="custom:Knob">
         <!-- Assign a null value to ManualCaptionFontSize using x:Null -->
         <Setter Property="OutlineWidth" Value="2"/>
-        <Setter Property="OutlineColor" Value="White"/>
+        <Setter Property="OutlineColor" Value="cyan"/>
         <Setter Property="MarkerWidth" Value="3"/>
-        <Setter Property="MarkerColor" Value="White"/>
+        <Setter Property="MarkerColor" Value="white"/>
         <Setter Property="DotFillColor" Value="White"/>
         
-        <Setter Property="MarkerStyle" Value="Line2"/>
+        <Setter Property="MarkerStyle" Value="Line1"/>
         <Setter Property="ShowTicks" Value="True" />
-        <Setter Property="TickColor" Value="white" />
+        <Setter Property="TickColor" Value="black" />
         <Setter Property="FillBrush" Value="{StaticResource KnobFillBrush}"/>
         <Setter Property="AnnotationMode" Value="LabelsAuto"></Setter>
         <Setter Property="ManualAnnotationFontSize" Value="9"></Setter>
-        <Setter Property="AnnotationColor" Value="white"></Setter>
-        <Setter Property="CaptionColor" Value="white"></Setter>
+        <Setter Property="AnnotationColor" Value="Blue"></Setter>
+        <Setter Property="CaptionColor" Value="Blue"></Setter>
         <Setter Property="ManualCaptionFontSize" Value="10"></Setter>
     </Style>
 

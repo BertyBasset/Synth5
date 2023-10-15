@@ -7,9 +7,14 @@ namespace WpfUi;
 
 
 // To Do List
-// Create basic VCO UI Module
-// Create ModuleBorder custom control
-// Add border to VCO
+// Move Led styline to Themes
+// Add Value event handlers to modules
+// Modules select events
+// Add Leds to LFO
+// Placeholder for buttons, Midi select * Polygate
+// Plumb Modules
+// Add ancilliary dialogs
+// Modulation
 
 
 

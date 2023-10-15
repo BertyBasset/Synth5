@@ -1,0 +1,51 @@
+﻿
+    <UserControl x:Class="WpfUi.Modules.ADSR"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:custom="clr-namespace:SynthCustomControls;assembly=SynthCustomControls"
+             xmlns:local="clr-namespace:WpfUi.Modules"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="330" d:DesignWidth="95"
+             Width="335" Height="95"
+    >
+
+
+
+    <Grid>
+        <Border Name="brdBorder" BorderBrush="white" BorderThickness="1" CornerRadius="10">
+            <Grid>
+                <Canvas Margin="5,5,5,5">
+
+                    <custom:Knob Name="knbAttack" Canvas.Top="8" Canvas.Left="0" Width="70"  ValueMin="0" ValueMax="5" Value="0" Height="0" FullSweepAngle="240">
+                        <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                        <custom:Knob.Caption>ATTACK</custom:Knob.Caption>
+                    </custom:Knob>
+
+                    <custom:Knob Name="knbDecay" Canvas.Top="8" Canvas.Left="85" Width="70" ValueMin="0" ValueMax="5" FullSweepAngle="240" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                        <custom:Knob.Caption>DECAY</custom:Knob.Caption>
+                    </custom:Knob>
+
+                    <custom:Knob Name="knbSustain" Canvas.Top="8" Canvas.Left="170" Width="70" ValueMin="0" ValueMax="1" FullSweepAngle="240" Height="70">
+                        <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                        <custom:Knob.Caption>SUSTAIN</custom:Knob.Caption>
+                    </custom:Knob>
+
+                    <custom:Knob Name="knbRelease" Canvas.Top="8" Canvas.Left="255" Width="70"  ValueMin="0" ValueMax="5" Value="0" Height="70" FullSweepAngle="240">
+                        <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                        <custom:Knob.Caption>RELEASE</custom:Knob.Caption>
+                    </custom:Knob>
+                    <custom:Led Name="ledSelect" Canvas.Top="-2" Canvas.Left="-2" Width="12" ToggleOnClick="true"></custom:Led>
+
+                </Canvas>
+                <!-- Centered Caption -->
+                <TextBlock Name = "lblCaption" Text="MyText" Foreground="White" Background="black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-10,0,0"/>
+            </Grid>
+        </Border>
+           
+    </Grid>
+
+</UserControl>

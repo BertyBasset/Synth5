@@ -77,7 +77,7 @@ namespace Synth.Modules.Effects {
             set {
                 _EffectType = value;
                 switch (_EffectType) {
-                    case EffectType.None: _Effect = new NullEffect() { Source = Source }; break;
+                    case EffectType.Off: _Effect = new NullEffect() { Source = Source }; break;
                     case EffectType.Chorus: _Effect = new Chorus() { Source = Source, Frequency = Param1, MaxDelay=Param2 }; break;
                     case EffectType.Reverb: _Effect = new Reverb() { Source = Source, Gain = Param1, DelayLength = Param2 }; break;
                     case EffectType.AllPass: _Effect = new AllPassFilter() { Source = Source, Gain = Param1, DelayLength = Param2 }; break;

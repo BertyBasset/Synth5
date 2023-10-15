@@ -1,0 +1,74 @@
+﻿
+    <UserControl x:Class="WpfUi.Modules.Effects"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:custom="clr-namespace:SynthCustomControls;assembly=SynthCustomControls"
+             xmlns:local="clr-namespace:WpfUi.Modules"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="330" d:DesignWidth="95"
+             Width="335" Height="95"
+    >
+
+    <Grid>
+        <Border Name="brdBorder" BorderBrush="white" BorderThickness="1" CornerRadius="10">
+            <Grid>
+                <Canvas Margin="5,5,5,5">
+
+                    <custom:Knob Name="knbEffectType" Canvas.Top="8" Canvas.Left="2" Width="70"  ValueMin="0" ValueMax="5" NumPositions="6" Value="0" Height="0" FullSweepAngle="150">
+                    <custom:Knob.AnnotationMode>Labels</custom:Knob.AnnotationMode>
+                    <custom:Knob.ManualAnnotationFontSize>9</custom:Knob.ManualAnnotationFontSize>
+                    <custom:Knob.ManualAnnotationRadius>1.7</custom:Knob.ManualAnnotationRadius>
+                    <custom:Knob.AnnotationLabels>
+                        <sys:String>off</sys:String>
+                        <sys:String>Cs</sys:String>
+                        <sys:String>Rv</sys:String>
+                        <sys:String>Al</sys:String>
+                        <sys:String>Bk</sys:String>
+                        <sys:String>Fd</sys:String>
+                    </custom:Knob.AnnotationLabels>
+                    <custom:Knob.Caption>TYPE</custom:Knob.Caption>
+                    </custom:Knob>
+
+                    <custom:Knob Name="knbGain" Canvas.Top="8" Canvas.Left="87" Width="70" ValueMin="0" ValueMax="1" FullSweepAngle="240" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                        <custom:Knob.Caption>GAIN</custom:Knob.Caption>
+                    </custom:Knob>
+
+                    <custom:Knob Name="knbFrequency" Canvas.Top="8" Canvas.Left="172" Width="70" ValueMin="0" ValueMax="1" FullSweepAngle="240" Height="70">
+                        <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
+                        <custom:Knob.Caption>FREQUENCY</custom:Knob.Caption>
+                    </custom:Knob>
+
+                    <custom:Knob Name="knbMix" Canvas.Top="8" Canvas.Left="256" Width="70"  ValueMin="-1" ValueMax="1" Value="0" Height="70" FullSweepAngle="240">
+                        <custom:Knob.AnnotationMode>Labels</custom:Knob.AnnotationMode>
+                        <custom:Knob.ManualAnnotationFontSize>9</custom:Knob.ManualAnnotationFontSize>
+                        <custom:Knob.ManualAnnotationRadius>1.6</custom:Knob.ManualAnnotationRadius>
+                        <custom:Knob.AnnotationLabels>
+                            <sys:String>Dry</sys:String>
+                            <sys:String>&#160;&#160;</sys:String>
+                            <sys:String>&#160;&#160;</sys:String>
+                            <sys:String>&#160;&#160;</sys:String>
+                            <sys:String>&#160;&#160;</sys:String>
+                            <sys:String>Dry+Fx</sys:String>
+                            <sys:String>&#160;&#160;</sys:String>
+                            <sys:String>&#160;&#160;</sys:String>
+                            <sys:String>&#160;&#160;</sys:String>
+                            <sys:String>&#160;&#160;</sys:String>
+                            <sys:String>Fx</sys:String>
+                        </custom:Knob.AnnotationLabels>
+                        <custom:Knob.Caption>MIX</custom:Knob.Caption>
+                    </custom:Knob>
+                    <custom:Led Name="ledSelect" Canvas.Top="-2" Canvas.Left="-2" Width="12" ToggleOnClick="true"></custom:Led>
+
+                    </Canvas>
+                <!-- Centered Caption -->
+                <TextBlock Name = "lblCaption" Text="MyText" Foreground="White" Background="black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-10,0,0"/>
+            </Grid>
+        </Border>
+           
+    </Grid>
+
+</UserControl>
