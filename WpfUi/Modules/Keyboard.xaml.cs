@@ -7,42 +7,21 @@ public partial class Keyboard : UserControl {
     #endregion
 
     #region Public properties
+    #region Style Properties
+
+    #endregion
+
+    #region Non styled properties
     public string Caption {
         get { return lblCaption.Text; }
         set { lblCaption.Text = value; }
     }
-
-    public Brush CaptionBrush {
-        get { return lblCaption.Foreground; }
-        set { 
-            lblCaption.Foreground = value; 
-        }
-    }
-
-    public Brush BorderColor {
-        get { return brdBorder.BorderBrush; }
-        set { brdBorder.BorderBrush = value; }
-    }
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public new Brush BorderBrush {
-        get { return BorderColor; }
-        set { BorderColor = value; }
-    }
-
-    public Thickness BorderWidth{ 
-        get { return brdBorder.BorderThickness; }
-        set  {brdBorder.BorderThickness = value; }
-    }
-
-    public CornerRadius BorderRadius {
-        get { return brdBorder.CornerRadius; }
-        set { brdBorder.CornerRadius = value; }
-    }
-
+    
     public double Glide {
         get { return knbGlide.Value; }
         set { knbGlide.Value = value;}
     }
+    #endregion
     #endregion
 
     #region Constructor

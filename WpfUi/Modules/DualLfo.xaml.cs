@@ -17,6 +17,11 @@ public partial class DualLfo : UserControl, ISelectableModule {
     #endregion
 
     #region Public properties
+    #region Style Properties
+  
+    #endregion
+
+    #region Non Styled Properties
     public string Caption1 {
         get { return lblCaption1.Text; }
         set { lblCaption1.Text = value; }
@@ -26,35 +31,7 @@ public partial class DualLfo : UserControl, ISelectableModule {
         get { return lblCaption2.Text; }
         set { lblCaption2.Text = value; }
     }
-
-    public Brush CaptionBrush {
-        get { return lblCaption1.Foreground; }
-        set { 
-            lblCaption1.Foreground = value;
-            lblCaption2.Foreground = value;
-        }
-    }
-
-    public Brush BorderColor {
-        get { return brdBorder.BorderBrush; }
-        set { brdBorder.BorderBrush = value; }
-    }
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public new Brush BorderBrush {
-        get { return BorderColor; }
-        set { BorderColor = value; }
-    }
-
-    public Thickness BorderWidth{ 
-        get { return brdBorder.BorderThickness; }
-        set  {brdBorder.BorderThickness = value; }
-    }
-
-    public CornerRadius BorderRadius {
-        get { return brdBorder.CornerRadius; }
-        set { brdBorder.CornerRadius = value; }
-    }
-
+     
     public double Rate1 {
         get { return knbRate1.Value; }
         set { knbRate1.Value = value;}
@@ -89,6 +66,7 @@ public partial class DualLfo : UserControl, ISelectableModule {
         get { return ledSelect.LedOn; }
         set { ledSelect.LedOn = value; }
     }
+    #endregion
     #endregion
 
     #region Constructor

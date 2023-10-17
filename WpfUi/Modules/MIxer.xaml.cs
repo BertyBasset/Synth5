@@ -12,38 +12,17 @@ public partial class Mixer : UserControl, ISelectableModule {
     #endregion
 
     #region Public properties
+    #region Style Properties
+    
+
+    #endregion
+
+    #region Non styled rpoperties
     public string Caption {
         get { return lblCaption.Text; }
         set { lblCaption.Text = value; }
     }
-
-    public Brush CaptionBrush {
-        get { return lblCaption.Foreground; }
-        set { 
-            lblCaption.Foreground = value; 
-        }
-    }
-
-    public Brush BorderColor {
-        get { return brdBorder.BorderBrush; }
-        set { brdBorder.BorderBrush = value; }
-    }
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public new Brush BorderBrush {
-        get { return BorderColor; }
-        set { BorderColor = value; }
-    }
-
-    public Thickness BorderWidth{ 
-        get { return brdBorder.BorderThickness; }
-        set  {brdBorder.BorderThickness = value; }
-    }
-
-    public CornerRadius BorderRadius {
-        get { return brdBorder.CornerRadius; }
-        set { brdBorder.CornerRadius = value; }
-    }
-
+      
     public double Osc1 {
         get { return knbOsc1.Value; }
         set { knbOsc1.Value = value;}
@@ -68,6 +47,7 @@ public partial class Mixer : UserControl, ISelectableModule {
         get { return ledSelect.LedOn; }
         set { ledSelect.LedOn = value; }
     }
+    #endregion
     #endregion
 
     #region Constructor

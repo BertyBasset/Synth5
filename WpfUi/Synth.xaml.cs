@@ -1,6 +1,7 @@
 ﻿using WpfUi.Modules;
 
 // To Do
+// 0.5 Change TextBox -> class name. Do properties affect controls?
 // 1.  Border colour stuck to white ?
 // 2.  Module Caption background should be same as canvas
 // 3.  Add Lfo LED + wire up
@@ -41,7 +42,6 @@ public partial class SynthUI : Window {
         modVCF.ModuleSelectLedChanged       += (o, e) => ModuleSelect(o, e);
         modEffects.ModuleSelectLedChanged   += (o, e) => ModuleSelect(o, e);
         modBitcrush.ModuleSelectLedChanged  += (o, e) => ModuleSelect(o, e);
-        modEffects.ModuleSelectLedChanged   += (o, e) => ModuleSelect(o, e);
         modDualLFO.ModuleSelectLedChanged   += (o, e) => ModuleSelect(o, e);
         modMixer.ModuleSelectLedChanged     += (o, e) => ModuleSelect(o, e);
     }

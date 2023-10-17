@@ -77,8 +77,8 @@
                         <custom:Knob.Caption>DELAY 2</custom:Knob.Caption>
                     </custom:Knob>
 
-                    <TextBlock  Canvas.Left="85"  Name = "lblCaption1" Text=" LFO1 / CLOCK " Foreground="White" Background="black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-15,0,0"/>
-                    <TextBlock Canvas.Left="366" Name = "lblCaption2" Text=" LFO2 " Foreground="White" Background="black" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-15,0,0"/>
+                    <TextBlock  Canvas.Left="85"  Name = "lblCaption1" Text=" LFO1 / CLOCK " Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-15,0,0" Background="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}"/>
+                    <TextBlock Canvas.Left="366" Name = "lblCaption2" Text=" LFO2 " Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-15,0,0" Background="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}"/>
                     <Line X1="15" Y1="84" X2="235" Y2="84" Stroke="white" StrokeThickness=".8" />
                     <Line X1="275" Y1="84" X2="490" Y2="84" Stroke="white" StrokeThickness=".8" />
 

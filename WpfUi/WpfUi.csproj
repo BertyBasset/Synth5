@@ -41,6 +41,8 @@
 
   <ItemGroup>
     <Folder Include="Dlls\" />
+    <Folder Include="Modules\" />
+    <Folder Include="Themes\modules\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,30 +54,6 @@
     <Reference Include="SynthCustomControls">
       <HintPath>Dlls\SynthCustomControls.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Modules\Keyboard.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Modules\BitCrush.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Modules\MIxer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Modules\ADSR.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Modules\DualLfo.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Modules\VCF.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Modules\Effects.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
 
 </Project>

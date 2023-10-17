@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-         xmlns:custom="clr-namespace:SynthCustomControls;assembly=SynthCustomControls"
+        xmlns:custom="clr-namespace:SynthCustomControls;assembly=SynthCustomControls"
         xmlns:local="clr-namespace:WpfUi.Modules"
+                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Background="black"
         Title="Synth" Height="575" Width="1230">
@@ -12,12 +13,13 @@
         <ResourceDictionary>
             <!-- Merge the Prophet.xaml theme -->
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Themes/Prophet.xaml"/>
+                <ResourceDictionary Source="/Themes/Waldorf.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
     </Window.Resources>    
     <Canvas>
-        <local:VCO x:Name="modVCO1" Caption=" VCO 1 " Canvas.Left="10" Canvas.Top="10" />
+        <local:VCO x:Name="modVCO1" Caption=" VCO 1 " Canvas.Left="10" Canvas.Top="10"  />
         <local:VCO x:Name="modVCO2" Caption=" VCO 2 " Canvas.Left="10" Canvas.Top="115" />
         <local:VCO x:Name="modVCO3" Caption=" VCO 3 " Canvas.Left="10" Canvas.Top="220" />
         <local:ADSR x:Name="modEnv1" Caption=" ENV1 " Canvas.Left="10" Canvas.Top="325" />
@@ -30,6 +32,7 @@
         <local:ADSR x:Name="modEnvVCF" Caption=" ENV3 - VCF " Canvas.Left="532" Canvas.Top="115" />
         <local:ADSR x:Name="modEnvVCA" Caption=" ENV4 - VCA " Canvas.Left="532" Canvas.Top="220" />
         <local:Effects x:Name="modEffects" Caption=" EFFECTS " Canvas.Left="532" Canvas.Top="325" />
+        
         
     </Canvas>
 </Window>

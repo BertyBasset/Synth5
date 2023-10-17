@@ -1,6 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:custom="clr-namespace:SynthCustomControls;assembly=SynthCustomControls">
+                    xmlns:custom="clr-namespace:SynthCustomControls;assembly=SynthCustomControls"
+                    xmlns:local="clr-namespace:WpfUi.Modules"
+                    >
+
+
+
+
 
     <!-- Apply any window styling -->
     <Style TargetType="Canvas">
@@ -17,7 +23,7 @@
     <Style TargetType="custom:Knob">
         <!-- Assign a null value to ManualCaptionFontSize using x:Null -->
         <Setter Property="OutlineWidth" Value="2"/>
-        <Setter Property="OutlineColor" Value="cyan"/>
+        <Setter Property="OutlineColor" Value="red"/>
         <Setter Property="MarkerWidth" Value="3"/>
         <Setter Property="MarkerColor" Value="white"/>
         <Setter Property="DotFillColor" Value="White"/>
@@ -39,6 +45,23 @@
         <Setter Property="FillBrushOn" Value="#FF2040" />
         <Setter Property="FillBrushOff" Value="#300000" />
     </Style>
+
+    <Style TargetType="local:ADSR">
+        
+    </Style>
+    <Style TargetType="local:BitCrush">
+
+    </Style>
+    <Style TargetType="local:DualLfo">
+
+    </Style>
+    <Style TargetType="local:Effects">
+
+    </Style>
+
+
+
+
 
 </ResourceDictionary>
 
