@@ -14,7 +14,7 @@ public partial class ADSR : UserControl, ISelectableModule {
     #region Public Properties
     #region Styled Properties
     public static readonly DependencyProperty CaptionBackgroundProperty = DependencyProperty.Register(
-        "CaptionBackground",
+        "CaptionBackgroundAdsr",
         typeof(Brush),
         typeof(ADSR),
         new PropertyMetadata(Brushes.Transparent)
@@ -30,7 +30,7 @@ public partial class ADSR : UserControl, ISelectableModule {
 
     public static readonly DependencyProperty CaptionForegroundProperty =
     DependencyProperty.Register(
-         "CaptionForeground",
+         "CaptionForegroundAdsr",
          typeof(Brush),
          typeof(ADSR),
          new PropertyMetadata(null));
@@ -43,10 +43,9 @@ public partial class ADSR : UserControl, ISelectableModule {
         }
     }
 
-
     public static readonly DependencyProperty BorderColorProperty =
         DependencyProperty.Register(
-             "BorderColor ",
+             "BorderColorAdsr",
              typeof(Color),
              typeof(ADSR),
              new PropertyMetadata(Colors.White));
@@ -58,9 +57,10 @@ public partial class ADSR : UserControl, ISelectableModule {
             brdBorder.BorderBrush = new SolidColorBrush(value);
         }
     }
+
     public static readonly DependencyProperty BorderWidthProperty =
     DependencyProperty.Register(
-         "BorderWidth ",
+         "BorderWidthAdsr",
          typeof(double),
          typeof(ADSR),
          new PropertyMetadata(1.0));
@@ -75,7 +75,7 @@ public partial class ADSR : UserControl, ISelectableModule {
 
     public static readonly DependencyProperty CornerRadiusProperty2 =
          DependencyProperty.Register(
-              "CornerRadius",
+              "CornerRadiusAdsr",
               typeof(CornerRadius),
               typeof(ADSR),
               new PropertyMetadata(new CornerRadius(3)));
@@ -128,6 +128,12 @@ public partial class ADSR : UserControl, ISelectableModule {
     #region Constructor
     public ADSR() {
         InitializeComponent();
+
+        CaptionForeground = ModuleTheme.CaptionForeground;
+        BorderWidth = ModuleTheme.BorderWidth;
+        BorderColor = ModuleTheme.BorderColor;
+        CornerRadius = ModuleTheme.CornerRadius;
+
 
         knbAttack.ValueChanged += (o, e) => AttackChanged?.Invoke(this, knbAttack.Value);
         knbDecay.ValueChanged += (o, e) => DecayChanged?.Invoke(this, knbDecay.Value);

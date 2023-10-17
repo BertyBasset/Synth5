@@ -15,7 +15,7 @@ public partial class VCO : UserControl, ISelectableModule {
     #region Public properties
     #region Style Properties
     public static readonly DependencyProperty CaptionBackgroundProperty = DependencyProperty.Register(
-          "CaptionBackground",
+          "CaptionBackgroundVCO",
           typeof(Brush),
           typeof(TextBlock),
           new PropertyMetadata(Brushes.Transparent)
@@ -31,7 +31,7 @@ public partial class VCO : UserControl, ISelectableModule {
 
     public static readonly DependencyProperty CaptionForegroundProperty =
     DependencyProperty.Register(
-         "CaptionForeground",
+         "CaptionForegroundVCO",
          typeof(Brush),
          typeof(TextBlock),
          new PropertyMetadata(null));
@@ -47,7 +47,7 @@ public partial class VCO : UserControl, ISelectableModule {
 
     public static readonly DependencyProperty BorderColorProperty =
         DependencyProperty.Register(
-             "BorderColor ",
+             "BorderColorVCO",
              typeof(Color),
              typeof(VCO),
              new PropertyMetadata(Colors.White));
@@ -61,7 +61,7 @@ public partial class VCO : UserControl, ISelectableModule {
     }
     public static readonly DependencyProperty BorderWidthProperty =
     DependencyProperty.Register(
-         "BorderWidth ",
+         "BorderWidthVCO",
          typeof(double),
          typeof(VCO),
          new PropertyMetadata(1.0));
@@ -76,7 +76,7 @@ public partial class VCO : UserControl, ISelectableModule {
 
     public static readonly DependencyProperty CornerRadiusProperty2 =
          DependencyProperty.Register(
-              "CornerRadius",
+              "CornerRadiusVCO",
               typeof(CornerRadius),
               typeof(VCO),
               new PropertyMetadata(new CornerRadius(3)));
@@ -128,6 +128,11 @@ public partial class VCO : UserControl, ISelectableModule {
     #region Constructor
     public VCO() {
         InitializeComponent();
+
+        CaptionForeground = ModuleTheme.CaptionForeground;
+        BorderWidth = ModuleTheme.BorderWidth;
+        BorderColor = ModuleTheme.BorderColor;
+        CornerRadius = ModuleTheme.CornerRadius;
 
         knbFrequency.ValueChanged += (o, e) => FrequencyChanged?.Invoke(this, knbFrequency.Value);
         knbOctave.ValueChanged += (o, e) => OctaveChanged?.Invoke(this, (int)knbOctave.Value);

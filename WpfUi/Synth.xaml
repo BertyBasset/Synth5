@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:custom="clr-namespace:SynthCustomControls;assembly=SynthCustomControls"
         xmlns:local="clr-namespace:WpfUi.Modules"
-                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Background="black"
-        Title="Synth" Height="575" Width="1230">
+        Title="Synth" Height="575" Width="892">
     <Window.Resources>
         <ResourceDictionary>
             <!-- Merge the Prophet.xaml theme -->
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Themes/Waldorf.xaml"/>
+                <ResourceDictionary Source="/Themes/Prophet.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
@@ -32,7 +32,10 @@
         <local:ADSR x:Name="modEnvVCF" Caption=" ENV3 - VCF " Canvas.Left="532" Canvas.Top="115" />
         <local:ADSR x:Name="modEnvVCA" Caption=" ENV4 - VCA " Canvas.Left="532" Canvas.Top="220" />
         <local:Effects x:Name="modEffects" Caption=" EFFECTS " Canvas.Left="532" Canvas.Top="325" />
-        
-        
+
+
+
+
+
     </Canvas>
 </Window>

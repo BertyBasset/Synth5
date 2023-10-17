@@ -46,19 +46,9 @@
         <Setter Property="FillBrushOff" Value="#300000" />
     </Style>
 
-    <Style TargetType="local:ADSR">
-        
+    <Style x:Key="BorderBrushStyle" TargetType="Border">
+        <Setter Property="BorderBrush" Value="Red" />
     </Style>
-    <Style TargetType="local:BitCrush">
-
-    </Style>
-    <Style TargetType="local:DualLfo">
-
-    </Style>
-    <Style TargetType="local:Effects">
-
-    </Style>
-
 
 
 

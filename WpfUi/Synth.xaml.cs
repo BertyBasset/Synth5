@@ -1,17 +1,14 @@
 ﻿using WpfUi.Modules;
 
 // To Do
-// 0.5 Change TextBox -> class name. Do properties affect controls?
-// 1.  Border colour stuck to white ?
-// 2.  Module Caption background should be same as canvas
-// 3.  Add Lfo LED + wire up
-// 4.  Get synth working
-// 5.  Add Midi Channel Selector
-// 6.  Add Polygate viewer
-// 7.  Wave viewer
-// 8.  Cntrollers setup
-// 9.  Patch Save/Load/Init - and categories?
-// 10. Modulation Section
+// 1.  Add Lfo LED + wire up
+// 2.  Get synth working
+// 3.  Add Midi Channel Selector
+// 4.  Add Polygate viewer
+// 5.  Wave viewer
+// 6.  Cntrollers setup
+// 7.  Patch Save/Load/Init - and categories?
+// 8.  Modulation Section
 
 
 
