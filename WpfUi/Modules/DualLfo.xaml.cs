@@ -115,6 +115,12 @@ public partial class DualLfo : UserControl, ISelectableModule {
         set { knbRate1.Value = value;}
     }
 
+
+    public bool RateLedOn1 {
+        get { return ledRate1.LedOn ; }
+        set { ledRate1.LedOn = value; }
+    }
+
     public double Shape1 {
         get { return knbShape1.Value; }
         set { knbShape1.Value = value; }
@@ -128,6 +134,11 @@ public partial class DualLfo : UserControl, ISelectableModule {
     public double Rate2 {
         get { return knbRate2.Value; }
         set { knbRate2.Value = value; }
+    }
+
+    public bool RateLedOn2 {
+        get { return ledRate2.LedOn; }
+        set { ledRate2.LedOn = value; }
     }
 
     public double Shape2 {

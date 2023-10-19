@@ -23,8 +23,21 @@
                         <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
                         <custom:Knob.Caption>GLIDE</custom:Knob.Caption>
                     </custom:Knob>
-
-
+                    <custom:Led Name="led1" Width="8" Canvas.Left="0" Canvas.Top="96" OutlineColor="#002400" FillBrushOn="LightGreen" FillBrushOff="#002400"></custom:Led>
+                    <custom:Led Name="led2" Width="8" Canvas.Left="15" Canvas.Top="96" OutlineColor="#002400" FillBrushOn="LightGreen" FillBrushOff="#002400"></custom:Led>
+                    <custom:Led Name="led3" Width="8" Canvas.Left="30" Canvas.Top="96" OutlineColor="#002400" FillBrushOn="LightGreen" FillBrushOff="#002400"></custom:Led>
+                    <custom:Led Name="led4" Width="8" Canvas.Left="45" Canvas.Top="96" OutlineColor="#002400" FillBrushOn="LightGreen" FillBrushOff="#002400"></custom:Led>
+                    <custom:Led Name="led5" Width="8" Canvas.Left="60" Canvas.Top="96" OutlineColor="#002400" FillBrushOn="LightGreen" FillBrushOff="#002400"></custom:Led>
+                    <Label Foreground="White" HorizontalAlignment="Center" Canvas.Left="-3" FontSize="9"  Canvas.Top="78">1</Label>
+                    <Label Foreground="White" HorizontalAlignment="Center" Canvas.Left="12" FontSize="9"  Canvas.Top="78">2</Label>
+                    <Label Foreground="White" HorizontalAlignment="Center" Canvas.Left="27" FontSize="9"  Canvas.Top="78">3</Label>
+                    <Label Foreground="White" HorizontalAlignment="Center" Canvas.Left="42" FontSize="9"  Canvas.Top="78">4</Label>
+                    <Label Foreground="White" HorizontalAlignment="Center" Canvas.Left="57" FontSize="9"  Canvas.Top="78">5</Label>
+                    <Label Foreground="White" HorizontalAlignment="Center" Canvas.Left="5"  Canvas.Top="97">Poly-gate</Label>
+                    <Button Canvas.Top="123" Width="68" Name="btnInitPatch">Init Patch</Button>
+                    <Button Canvas.Top="146" Width="68" Name="btnControllers">Controllers</Button>
+                    <Button Canvas.Top="169" Width="68" Name="btnOscilliscope">Oscilliscope</Button>
+                    
 
                 </Canvas>
                 <!-- Centered Caption -->

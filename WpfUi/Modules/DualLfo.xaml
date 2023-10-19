@@ -31,7 +31,7 @@
                         <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
                         <custom:Knob.Caption> RATE 1</custom:Knob.Caption>
                     </custom:Knob>
-
+                   
                     <custom:Knob Name="knbShape1" Canvas.Top="8" Canvas.Left="90" Width="70" ValueMin="0" ValueMax="5" NumPositions="6" FullSweepAngle="180" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top">
                         <custom:Knob.AnnotationMode>Images</custom:Knob.AnnotationMode>
                         <custom:Knob.AnnotationImageResourceKeys>
@@ -83,6 +83,8 @@
                     <Line X1="275" Y1="84" X2="490" Y2="84" Stroke="white" StrokeThickness=".8" />
 
                     <custom:Led Name="ledSelect" Canvas.Top="-2" Canvas.Left="-2" Width="12" ToggleOnClick="true"></custom:Led>
+                    <custom:Led OutlineColor="#002400" FillBrushOn="LightGreen" FillBrushOff="#002400" Name="ledRate1" Canvas.Top="70" Canvas.Left="57" Width="9" ToggleOnClick="True"></custom:Led>
+                    <custom:Led OutlineColor="#002400" FillBrushOn="LightGreen" FillBrushOff="#002400" Name="ledRate2" Canvas.Top="70" Canvas.Left="321" Width="9" ToggleOnClick="True"></custom:Led>
                 </Canvas>
 
             </Grid>

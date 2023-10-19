@@ -1,4 +1,6 @@
-﻿namespace WpfUi.Modules;
+﻿using SynthCustomControls;
+
+namespace WpfUi.Modules;
 
 public partial class Keyboard : UserControl {
     #region Event declarations
@@ -88,6 +90,27 @@ public partial class Keyboard : UserControl {
     #endregion
 
     #region Non styled properties
+
+    public (int, bool) KeyState {
+        set {
+            int keyIndex = value.Item1;
+            bool keyDown = value.Item2;
+
+            Led led = led1;
+            switch (keyIndex) {
+                case 0: led = led1; break;
+                case 1: led = led2; break;
+                case 2: led = led3; break;
+                case 3: led = led4; break;
+                case 4: led = led5; break;
+                default: break;
+            }
+            led.Dispatcher.Invoke(() => {
+                led.LedOn = keyDown;
+            });
+        }
+    }
+
     public string Caption {
         get { return lblCaption.Text; }
         set { lblCaption.Text = value; }

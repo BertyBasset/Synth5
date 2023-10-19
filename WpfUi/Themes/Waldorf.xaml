@@ -18,7 +18,12 @@
         <GradientStop Color="cyan" Offset="0" />
         <GradientStop Color="navy" Offset="1.0" />
     </RadialGradientBrush>
-    
+
+    <LinearGradientBrush x:Key="ButtonFillBrush" StartPoint=".7,0" EndPoint="1,1">
+        <GradientStop Color="navy" Offset="0"></GradientStop>
+        <GradientStop Color="cyan" Offset="1"></GradientStop>
+    </LinearGradientBrush>
+
     <!-- Define the custom control style -->
     <Style TargetType="custom:Knob">
         <!-- Assign a null value to ManualCaptionFontSize using x:Null -->
@@ -50,7 +55,10 @@
         <Setter Property="BorderBrush" Value="Red" />
     </Style>
 
-
+    <Style TargetType="Button">
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Background" Value="{StaticResource ButtonFillBrush}"/>
+    </Style>
 
 
 </ResourceDictionary>

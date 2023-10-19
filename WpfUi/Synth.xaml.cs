@@ -1,12 +1,13 @@
-﻿using WpfUi.Modules;
+﻿using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using WpfUi.Modules;
 
 // To Do
-// 1.  Add Lfo LED + wire up
 // 2.  Get synth working
-// 3.  Add Midi Channel Selector
-// 4.  Add Polygate viewer
+// 3.  Add Midi Channel Selector  
 // 5.  Wave viewer
 // 6.  Cntrollers setup
+// 6.5   Maybe break for Inventory
 // 7.  Patch Save/Load/Init - and categories?
 // 8.  Modulation Section
 
@@ -15,6 +16,10 @@
 namespace WpfUi;
 
 public partial class SynthUI : Window {
+    private Point origin;
+    private Point start;
+    private bool isPanning = false;
+
     readonly Synth.Patch patch = new();
 
     #region Constructor
@@ -23,6 +28,8 @@ public partial class SynthUI : Window {
 
         AddModuleSelectedEventHandlers();
         AddModuleControlsEventHandlers();
+        AddPatchEventHandlers();
+        AddPageEventHandlers();
     }
     #endregion
 
@@ -46,6 +53,8 @@ public partial class SynthUI : Window {
 
     #region Module Controls Event Handlers
     private void AddModuleControlsEventHandlers() {
+        
+
         modVCO1.FrequencyChanged      += (v, frequency)  => patch.Vco1FineTune       = frequency;
         modVCO1.OctaveChanged         += (v, octave)     => patch.Vco1Octave         = octave;
         modVCO1.WaveformChanged       += (v, waveform)   => patch.Vco1WaveFormType   = waveform;
@@ -102,8 +111,76 @@ public partial class SynthUI : Window {
         modEnvVCA.DecayChanged        += (e, decay)      => patch.VcaEnvDecay        = decay;
         modEnvVCA.SustainChanged      += (e, sustain)    => patch.VcaEnvSustain      = sustain;
         modEnvVCA.ReleaseChanged      += (e, release)    => patch.VcaEnvRelease      = release;
+
+    }
+
+    private void AddPatchEventHandlers() { 
+        patch.Lfo1StateChanged        += (o, state)      => modDualLFO.RateLedOn1    = state;
+        patch.Lfo2StateChanged        += (o, state)      => modDualLFO.RateLedOn2    = state;
+        patch.KeyChanged              += (o, keystate)   => modKeyboard.KeyState     = keystate.Value;
+
+
+    }
+
+    #endregion
+
+    #region Page Event Handlers
+    void AddPageEventHandlers() {
+        canvasContent.PreviewMouseWheel += CanvasContent_PreviewMouseWheel;
+        canvasContent.PreviewMouseDown += CanvasContent_PreviewMouseDown;
+        canvasContent.PreviewMouseUp += CanvasContent_PreviewMouseUp;
+        canvasContent.MouseMove += CanvasContent_MouseMove;
+        this.MouseRightButtonDown += CanvasContent_MouseRightButtonDown;
+        canvasContent.MouseRightButtonDown += CanvasContent_MouseRightButtonDown;
+
+    }
+
+    private void CanvasContent_MouseRightButtonDown(object sender, MouseButtonEventArgs e) {
+        // Reset zoom and pan on right click
+        if (e.RightButton == MouseButtonState.Pressed)
+            canvasContent.RenderTransform = new MatrixTransform(Matrix.Identity);
+    }
+
+    private void CanvasContent_PreviewMouseWheel(object sender, MouseWheelEventArgs e) {
+        Point position = e.GetPosition(canvasContent);
+        double scale = e.Delta > 0 ? 1.1 : 0.9; // Zoom in or out based on the mouse wheel direction
+        ScaleCanvas(scale, position);
+    }
+
+    private void CanvasContent_PreviewMouseDown(object sender, MouseButtonEventArgs e) {
+        if (e.ChangedButton == MouseButton.Middle) {
+            canvasContent.CaptureMouse();
+            isPanning = true;
+            start = e.GetPosition(this);
+            origin = new Point(canvasContent.RenderTransform.Value.OffsetX, canvasContent.RenderTransform.Value.OffsetY);
+        }
+    }
+
+    private void CanvasContent_PreviewMouseUp(object sender, MouseButtonEventArgs e) {
+        if (isPanning && e.ChangedButton == MouseButton.Middle) {
+            canvasContent.ReleaseMouseCapture();
+            isPanning = false;
+        }
+    }
+
+    private void CanvasContent_MouseMove(object sender, MouseEventArgs e) {
+        if (isPanning) {
+            Point p = e.MouseDevice.GetPosition(this);
+            Matrix matrix = canvasContent.RenderTransform.Value;
+            matrix.OffsetX = origin.X + (p.X - start.X);
+            matrix.OffsetY = origin.Y + (p.Y - start.Y);
+
+            canvasContent.RenderTransform = new MatrixTransform(matrix);
+        }
+    }
+
+    private void ScaleCanvas(double scale, Point position) {
+        Matrix matrix = canvasContent.RenderTransform.Value;
+        matrix.ScaleAt(scale, scale, position.X, position.Y);
+        canvasContent.RenderTransform = new MatrixTransform(matrix);
     }
     #endregion
+
     #endregion
 
     #region Module Select using Leds

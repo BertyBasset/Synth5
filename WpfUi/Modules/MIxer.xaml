@@ -19,12 +19,12 @@
             <Grid>
                 <Canvas Margin="5,5,5,5">
 
-                    <custom:Knob Name="knbOsc1" Canvas.Top="8" Canvas.Left="-2" Width="70"  ValueMin="0" ValueMax="5" Value="0" Height="0" FullSweepAngle="240">
+                    <custom:Knob Name="knbOsc1" Canvas.Top="8" Canvas.Left="-2" Width="70"  ValueMin="0" ValueMax="1" Value="0" Height="0" FullSweepAngle="240">
                         <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
                         <custom:Knob.Caption>OSC 1</custom:Knob.Caption>
                     </custom:Knob>
 
-                    <custom:Knob Name="knbOsc2" Canvas.Top="113" Canvas.Left="-2" Width="70" ValueMin="0" ValueMax="5" FullSweepAngle="240" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <custom:Knob Name="knbOsc2" Canvas.Top="113" Canvas.Left="-2" Width="70" ValueMin="0" ValueMax="1" FullSweepAngle="240" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top">
                         <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
                         <custom:Knob.Caption>OSC 2</custom:Knob.Caption>
                     </custom:Knob>
@@ -34,7 +34,7 @@
                         <custom:Knob.Caption>OSC 3</custom:Knob.Caption>
                     </custom:Knob>
 
-                    <custom:Knob Name="knbNoise" Canvas.Top="324" Canvas.Left="-2" Width="70"  ValueMin="0" ValueMax="5" Value="0" Height="70" FullSweepAngle="240">
+                    <custom:Knob Name="knbNoise" Canvas.Top="324" Canvas.Left="-2" Width="70"  ValueMin="0" ValueMax="1" Value="0" Height="70" FullSweepAngle="240">
                         <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
                         <custom:Knob.Caption>NOISE</custom:Knob.Caption>
                     </custom:Knob>
