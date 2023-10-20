@@ -1,13 +1,18 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Text.Json;
 using System.Windows.Input;
+using System.Xml;
 using WpfUi.Modules;
+using WpfUi.Utils;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 // To Do
-// 2.  Get synth working
+// 1.  Effects not working
+// 2.  Check each knob
 // 3.  Add Midi Channel Selector  
-// 5.  Wave viewer
-// 6.  Cntrollers setup
-// 6.5   Maybe break for Inventory
+// 4.  Wave viewer
+// 5.  Controllers setup
+// 6.   Maybe break for Inventory
 // 7.  Patch Save/Load/Init - and categories?
 // 8.  Modulation Section
 
@@ -30,6 +35,8 @@ public partial class SynthUI : Window {
         AddModuleControlsEventHandlers();
         AddPatchEventHandlers();
         AddPageEventHandlers();
+
+        InitPatch();
     }
     #endregion
 
@@ -133,6 +140,8 @@ public partial class SynthUI : Window {
         this.MouseRightButtonDown += CanvasContent_MouseRightButtonDown;
         canvasContent.MouseRightButtonDown += CanvasContent_MouseRightButtonDown;
 
+        cmdSave.Click += (o, e) => Patching.SavePatch("init.json", canvasContent);
+        cmdLoad.Click += (o, e) => Patching.LoadPatch("init.json", canvasContent);
     }
 
     private void CanvasContent_MouseRightButtonDown(object sender, MouseButtonEventArgs e) {
@@ -216,4 +225,14 @@ public partial class SynthUI : Window {
         return userControls;
     }
     #endregion
+
+    #region Patch
+    void InitPatch() {
+        Patching.LoadPatch("init.json", canvasContent);
+    }
+  
+
+
+    #endregion
+
 }

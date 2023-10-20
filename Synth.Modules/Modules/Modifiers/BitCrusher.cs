@@ -3,8 +3,8 @@ namespace Synth.Modules.Modifiers;
 public class BitCrusher : iModule {
     #region Public Members
     public iModule Source { get; set; } = new NullModule();
-    public double Resolution { get; set; }
-    private double _samplerate;
+    public double Resolution { get; set; } = 0;
+    private double _samplerate = 0;
     public double SampleRate {
         get { return _samplerate; }
         set

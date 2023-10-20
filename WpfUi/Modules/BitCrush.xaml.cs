@@ -1,4 +1,6 @@
-﻿namespace WpfUi.Modules;
+﻿using WpfUi.Utils;
+
+namespace WpfUi.Modules;
 
 public partial class BitCrush : UserControl, ISelectableModule {
     #region Event declarations
@@ -97,14 +99,23 @@ public partial class BitCrush : UserControl, ISelectableModule {
         set { lblCaption.Text = value; }
     }
 
+    [JsonSerializeAttribute]
     public double SampleRate {
         get { return knbSampleRate.Value; }
-        set { knbSampleRate.Value = value;}
+        set { 
+            knbSampleRate.Value = value;
+            SampleRateChanged?.Invoke(this, value);
+
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Resolution {
         get { return knbResolution.Value; }
-        set { knbResolution.Value = value; }
+        set { 
+            knbResolution.Value = value;
+            ResolutionChanged?.Invoke(this, value);
+        }
     }
 
     public bool ModuleSelectLedOn{

@@ -25,15 +25,17 @@
             <local:VCO x:Name="modVCO3" Caption=" VCO 3 " Canvas.Left="10" Canvas.Top="220" />
             <local:ADSR x:Name="modEnv1" Caption=" ENV1 " Canvas.Left="10" Canvas.Top="325" />
             <local:ADSR x:Name="modEnv2" Caption=" ENV2 " Canvas.Left="10" Canvas.Top="430" />
-            <local:Mixer x:Name="modMixer" Caption=" MIXER " Canvas.Left="355" Canvas.Top="10" Osc1="1" Osc2="1" Osc3="1" />
+            <local:Mixer x:Name="modMixer" Caption=" MIXER " Canvas.Left="355" Canvas.Top="10" />
             <local:BitCrush x:Name="modBitcrush" Caption=" BITCRUSH " Canvas.Left="444" Canvas.Top="10" />
             <local:Keyboard x:Name="modKeyboard" Caption=" KEYBOARD " Canvas.Left="444" Canvas.Top="220" />
             <local:DualLfo x:Name="modDualLFO" Caption1=" LFO1 / CLOCK " Caption2=" LFO 2 " Canvas.Left="355" Canvas.Top="430" />
-            <local:VCF x:Name="modVCF" Caption=" VCF " Canvas.Left="532" Canvas.Top="10" Cutoff="1" />
-            <local:ADSR x:Name="modEnvVCF" Caption=" ENV3 - VCF " Canvas.Left="532" Canvas.Top="115" Sustain="1" />
-            <local:ADSR x:Name="modEnvVCA" Caption=" ENV4 - VCA " Canvas.Left="532" Canvas.Top="220" Sustain="1" />
+            <local:VCF x:Name="modVCF" Caption=" VCF " Canvas.Left="532" Canvas.Top="10" />
+            <local:ADSR x:Name="modEnvVCF" Caption=" ENV3 - VCF " Canvas.Left="532" Canvas.Top="115" />
+            <local:ADSR x:Name="modEnvVCA" Caption=" ENV4 - VCA " Canvas.Left="532" Canvas.Top="220" />
             <local:Effects x:Name="modEffects" Caption=" EFFECTS " Canvas.Left="532" Canvas.Top="325" />
 
+            <Button Name="cmdSave">Save</Button>
+            <Button Name="cmdLoad" Canvas.Left="30">Load</Button>
         </Canvas>
     </ScrollViewer>
 </Window>

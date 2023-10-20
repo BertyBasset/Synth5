@@ -1,6 +1,7 @@
 ﻿using Synth;
 using Synth.Core;
 using System.Windows.Media;
+using WpfUi.Utils;
 
 namespace WpfUi.Modules;
 
@@ -109,24 +110,40 @@ public partial class Effects : UserControl, ISelectableModule {
         }
     }
 
+    [JsonSerializeAttribute]
     public double EffectType {
         get { return knbEffectType.Value; }
-        set { knbEffectType.Value = value;}
+        set { 
+            knbEffectType.Value = value;
+            EffectTypeChanged?.Invoke(this, (Enums.EffectType)  value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Gain {
         get { return knbGain.Value; }
-        set { knbGain.Value = value; }
+        set { 
+            knbGain.Value = value;
+            GainChanged?.Invoke(this, value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Frequency {
         get { return knbFrequency.Value; }
-        set { knbFrequency.Value = value; }
+        set { 
+            knbFrequency.Value = value;
+            FrequencyChanged?.Invoke(this, value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Mix {
         get { return knbMix.Value; }
-        set { knbMix.Value = value; }
+        set { 
+            knbMix.Value = value;
+            MixChanged?.Invoke(this, value);
+        }
     }
 
     public bool ModuleSelectLedOn{

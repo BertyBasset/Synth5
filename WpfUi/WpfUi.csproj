@@ -55,4 +55,10 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Patches\x.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

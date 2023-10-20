@@ -29,7 +29,7 @@ public class VCO : iModule {
 
 
     // To simplify Oscillator, delegate all Frequency operations to containment class Frequecny
-    public Frequency Frequency = new Frequency();
+    public Frequency Frequency = new();
 
 
     public double Value { get; internal set; }         // This is pre amplitude modified value suitable as modulation source  

@@ -1,4 +1,6 @@
-﻿namespace WpfUi.Modules;
+﻿using WpfUi.Utils;
+
+namespace WpfUi.Modules;
 
 public partial class ADSR : UserControl, ISelectableModule {
     #region Event declarations
@@ -98,24 +100,40 @@ public partial class ADSR : UserControl, ISelectableModule {
         set { lblCaption.Text = value; }
     }
 
+    [JsonSerializeAttribute]
     public double Attack {
         get { return knbAttack.Value; }
-        set { knbAttack.Value = value;}
+        set { 
+            knbAttack.Value = value;
+            AttackChanged?.Invoke(this, value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Decay {
         get { return knbDecay.Value; }
-        set { knbDecay.Value = value; }
+        set { 
+            knbDecay.Value = value;
+            DecayChanged?.Invoke(this, value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Sustain {
         get { return knbSustain.Value; }
-        set { knbSustain.Value = value; }
+        set { 
+            knbSustain.Value = value;
+            SustainChanged?.Invoke(this, value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Release {
         get { return knbRelease.Value; }
-        set { knbRelease.Value = value; }
+        set { 
+            knbRelease.Value = value;
+            ReleaseChanged?.Invoke(this, value);
+        }
     }
 
     public bool ModuleSelectLedOn{

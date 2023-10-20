@@ -1,4 +1,5 @@
 ﻿using Synth;
+using WpfUi.Utils;
 
 namespace WpfUi.Modules;
 public partial class VCF : UserControl, ISelectableModule {
@@ -104,24 +105,40 @@ public partial class VCF : UserControl, ISelectableModule {
         }
     }
 
+    [JsonSerializeAttribute]
     public double FilterType {
         get { return knbFilterType.Value; }
-        set { knbFilterType.Value = value;}
+        set { 
+            knbFilterType.Value = value;
+            FilterTypeChanged?.Invoke(this, (Enums.FilterType)value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Cutoff {
         get { return knbCutoff.Value; }
-        set { knbCutoff.Value = value; }
+        set {
+            knbCutoff.Value = value;
+            CutoffChanged?.Invoke(this, value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Resonance {
         get { return knbResonance.Value; }
-        set { knbResonance.Value = value; }
+        set { 
+            knbResonance.Value = value;
+            ResonanceChanged?.Invoke(this, value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double EnvelopeAmount {
         get { return knbEnvelopeAmount.Value; }
-        set { knbEnvelopeAmount.Value = value; }
+        set { 
+            knbEnvelopeAmount.Value = value; 
+            EnvelopeAmountChanged?.Invoke(this, value);
+        }
     }
 
     public bool ModuleSelectLedOn{

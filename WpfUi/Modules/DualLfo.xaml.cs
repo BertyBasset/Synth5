@@ -1,4 +1,5 @@
 ﻿using Synth.Properties;
+using WpfUi.Utils;
 
 namespace WpfUi.Modules;
 
@@ -109,31 +110,46 @@ public partial class DualLfo : UserControl, ISelectableModule {
         get { return lblCaption2.Text; }
         set { lblCaption2.Text = value; }
     }
-     
+
+    [JsonSerializeAttribute]
     public double Rate1 {
         get { return knbRate1.Value; }
-        set { knbRate1.Value = value;}
+        set { 
+            knbRate1.Value = value;
+            Rate1Changed?.Invoke(this, value);
+        }
     }
-
 
     public bool RateLedOn1 {
         get { return ledRate1.LedOn ; }
         set { ledRate1.LedOn = value; }
     }
 
+    [JsonSerializeAttribute]
     public double Shape1 {
         get { return knbShape1.Value; }
-        set { knbShape1.Value = value; }
+        set { 
+            knbShape1.Value = value;
+            Shape1Changed?.Invoke(this, (LFOWaveformType)value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Delay1 {
         get { return knbDelay1.Value; }
-        set { knbDelay1.Value = value; }
+        set { 
+            knbDelay1.Value = value;
+            Delay1Changed?.Invoke(this, value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Rate2 {
         get { return knbRate2.Value; }
-        set { knbRate2.Value = value; }
+        set { 
+            knbRate2.Value = value;
+            Rate2Changed?.Invoke(this, value);
+        }
     }
 
     public bool RateLedOn2 {
@@ -141,14 +157,22 @@ public partial class DualLfo : UserControl, ISelectableModule {
         set { ledRate2.LedOn = value; }
     }
 
+    [JsonSerializeAttribute]
     public double Shape2 {
         get { return knbShape2.Value; }
-        set { knbShape2.Value = value; }
+        set { 
+            knbShape2.Value = value;
+            Shape2Changed?.Invoke(this, (LFOWaveformType)value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Delay2 {
         get { return knbDelay2.Value; }
-        set { knbDelay2.Value = value; }
+        set {
+            knbDelay2.Value = value;
+            Delay2Changed?.Invoke(this, value);
+        }
     }
 
     public bool ModuleSelectLedOn{

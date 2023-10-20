@@ -1,4 +1,5 @@
 ﻿using SynthCustomControls;
+using WpfUi.Utils;
 
 namespace WpfUi.Modules;
 
@@ -115,10 +116,14 @@ public partial class Keyboard : UserControl {
         get { return lblCaption.Text; }
         set { lblCaption.Text = value; }
     }
-    
+
+    [JsonSerializeAttribute]
     public double Glide {
         get { return knbGlide.Value; }
-        set { knbGlide.Value = value;}
+        set { 
+            knbGlide.Value = value;
+            GlideChanged?.Invoke(this, value);
+        }
     }
     #endregion
     #endregion

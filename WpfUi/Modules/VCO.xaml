@@ -29,7 +29,7 @@
             <Grid>
             <Canvas Margin="5,5,5,5" Name="canvas">
                 <custom:Led Name="ledSelect" Canvas.Top="-2" Canvas.Left="-2" Width="12" ToggleOnClick="true"></custom:Led>
-                <custom:Knob Name="knbFrequency" Canvas.Top="8" Canvas.Left="0" Width="70"  ValueMin="-1" ValueMax="1" Value="0" Height="0" FullSweepAngle="240">
+                <custom:Knob Name="knbFrequency" Canvas.Top="8" Canvas.Left="0" Width="70"  ValueMin="-.0083" ValueMax=".083" Value="0" Height="0" FullSweepAngle="240">
                     <custom:Knob.AnnotationMode>Labels</custom:Knob.AnnotationMode>
                     <custom:Knob.AnnotationLabels>
                         <sys:String>-1</sys:String>

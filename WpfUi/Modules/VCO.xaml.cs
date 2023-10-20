@@ -1,4 +1,7 @@
-﻿using Synth.Properties;
+﻿using Synth;
+using Synth.Properties;
+using System.Text.Json.Serialization;
+using WpfUi.Utils;
 
 namespace WpfUi.Modules;
 public partial class VCO : UserControl, ISelectableModule {
@@ -98,24 +101,40 @@ public partial class VCO : UserControl, ISelectableModule {
         set { lblCaption.Text = value; }
     }
 
+    [JsonSerializeAttribute]
     public double Frequency {
         get { return knbFrequency.Value; }
-        set { knbFrequency.Value = value; }
+        set { 
+            knbFrequency.Value = value;
+            FrequencyChanged?.Invoke(this, value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Octave {
         get { return knbOctave.Value; }
-        set { knbOctave.Value = value; }
+        set { 
+            knbOctave.Value = value;
+            OctaveChanged?.Invoke(this, (int)value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Waveform {
         get { return knbWaveform.Value; }
-        set { knbWaveform.Value = value; }
+        set { 
+            knbWaveform.Value = value;
+            WaveformChanged?.Invoke(this, (VCOWaveformType)value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double PulseWidth {
         get { return knbPulseWidth.Value; }
-        set { knbPulseWidth.Value = value; }
+        set { 
+            knbPulseWidth.Value = value;
+            PulseWidthChanged?.Invoke(this, value);
+        }
     }
 
     public bool ModuleSelectLedOn{

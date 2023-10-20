@@ -1,4 +1,6 @@
-﻿namespace WpfUi.Modules;
+﻿using WpfUi.Utils;
+
+namespace WpfUi.Modules;
 public partial class Mixer : UserControl, ISelectableModule {
     #region Event declarations
     // Knob value changed events
@@ -97,25 +99,41 @@ public partial class Mixer : UserControl, ISelectableModule {
         get { return lblCaption.Text; }
         set { lblCaption.Text = value; }
     }
-      
+
+    [JsonSerializeAttribute]
     public double Osc1 {
         get { return knbOsc1.Value; }
-        set { knbOsc1.Value = value;}
+        set { 
+            knbOsc1.Value = value;
+            Osc1LevelChanged?.Invoke(this, value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Osc2{
         get { return knbOsc2.Value; }
-        set { knbOsc2.Value = value; }
+        set { 
+            knbOsc2.Value = value;
+            Osc2LevelChanged?.Invoke(this, value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Osc3 {
         get { return knbOsc3.Value; }
-        set { knbOsc3.Value = value; }
+        set { 
+            knbOsc3.Value = value;
+            Osc3LevelChanged?.Invoke(this, value);
+        }
     }
 
+    [JsonSerializeAttribute]
     public double Noise {
         get { return knbNoise.Value; }
-        set { knbNoise.Value = value; }
+        set { 
+            knbNoise.Value = value;
+            NoiseLevelChanged?.Invoke(this, value);
+        }
     }
 
     public bool ModuleSelectLedOn{
