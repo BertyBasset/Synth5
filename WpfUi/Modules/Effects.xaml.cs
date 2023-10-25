@@ -162,7 +162,9 @@ public partial class Effects : UserControl, ISelectableModule {
         BorderColor = ModuleTheme.BorderColor;
         CornerRadius = ModuleTheme.CornerRadius;
 
-        knbEffectType.ValueChanged += (o, e) => { EffectTypeChanged?.Invoke(this, (Enums.EffectType)knbEffectType.Value); UpdateEffectsCaption(); };
+        knbEffectType.ValueChanged += (o, e) => { 
+            EffectTypeChanged?.Invoke(this, (Enums.EffectType)knbEffectType.Value); UpdateEffectsCaption(); 
+        };
         knbGain.ValueChanged += (o, e) => GainChanged?.Invoke(this, knbGain.Value);
         knbFrequency.ValueChanged += (o, e) => FrequencyChanged?.Invoke(this, knbFrequency.Value);
         knbMix.ValueChanged += (o, e) => MixChanged?.Invoke(this, knbMix.Value);

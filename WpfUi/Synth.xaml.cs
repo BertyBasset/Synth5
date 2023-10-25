@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Synth;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Windows.Input;
 using System.Xml;
@@ -7,14 +8,13 @@ using WpfUi.Utils;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 // To Do
-// 1.  Effects not working
-// 2.  Check each knob
-// 3.  Add Midi Channel Selector  
-// 4.  Wave viewer
-// 5.  Controllers setup
-// 6.   Maybe break for Inventory
-// 7.  Patch Save/Load/Init - and categories?
-// 8.  Modulation Section
+// 1.  Wave viewer
+//     a. Check boxes
+//     b. Add grid/legend
+// 2.  Controllers setup
+// 3.   Maybe break for Inventory
+// 4.  Patch Save/Load/Init - and categories?
+// 5.  Modulation Section
 
 
 
@@ -106,8 +106,20 @@ public partial class SynthUI : Window {
 
         modVCF.FilterTypeChanged      += (f, filtertype) => patch.VcfFilterType      = filtertype;
         modVCF.CutoffChanged          += (f, cutoff)     => patch.VcfCutoff          = cutoff;
-        modVCF.ResonanceChanged       += (f, resonance)  => patch.VcfResonance       = resonance;
+        modVCF.ResonanceChanged += (f, resonance) => {
+            _ = patch.VcfFilterType switch {
+                Enums.FilterType.Butterworth => patch.VcfResonance = resonance,
+                Enums.FilterType.Chebyshev => patch.VcfRippleFactor = resonance,
+                Enums.FilterType.BandPass or Enums.FilterType.Notch => patch.VcfBandwidth = resonance,
+                _ => default // Default case does nothing
+            };
+        };
         modVCF.EnvelopeAmountChanged  += (f, envAmount)  => patch.VcfEnvelopeAmount  = envAmount;
+
+        modEffects.EffectTypeChanged  += (f, effecttype) => patch.EffectType         = effecttype;
+        modEffects.GainChanged        += (f, gain)       => patch.EffectParam1       = gain;
+        modEffects.FrequencyChanged   += (f, frequency)  => patch.EffectParam2       = frequency;
+        modEffects.MixChanged         += (f, mix)        => patch.EffectMix          = mix;
 
         modEnvVCF.AttackChanged       += (e, attack)     => patch.VcfEnvAttack       = attack;
         modEnvVCF.DecayChanged        += (e, decay)      => patch.VcfEnvDecay        = decay;
@@ -140,8 +152,17 @@ public partial class SynthUI : Window {
         this.MouseRightButtonDown += CanvasContent_MouseRightButtonDown;
         canvasContent.MouseRightButtonDown += CanvasContent_MouseRightButtonDown;
 
-        cmdSave.Click += (o, e) => Patching.SavePatch("init.json", canvasContent);
-        cmdLoad.Click += (o, e) => Patching.LoadPatch("init.json", canvasContent);
+        //cmdSave.Click += (o, e) => Patching.SavePatch("init.json", canvasContent);
+        //cmdLoad.Click += (o, e) => Patching.LoadPatch("init.json", canvasContent);
+
+        modKeyboard.WaveViewerButtonClicked += (o, e) => {
+            var c = new WaveViewer(patch.SynthEngine);
+            c.Show();
+        };
+        modKeyboard.ControllersButtonClicked += (o, e) => {
+            var c = new Controllers();
+            c.Show();
+        };
     }
 
     private void CanvasContent_MouseRightButtonDown(object sender, MouseButtonEventArgs e) {

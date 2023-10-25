@@ -45,6 +45,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FftSharp" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Synth.Modules\Synth.Modules.csproj" />
     <ProjectReference Include="..\Synth.Patch\Synth.Patch.csproj" />
   </ItemGroup>

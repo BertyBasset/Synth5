@@ -19,7 +19,7 @@
             <Grid>
                 <Canvas Margin="5,5,5,5">
 
-                    <custom:Knob Name="knbGlide" Canvas.Top="8" Canvas.Left="0" Width="70"  ValueMin="0" ValueMax="1" Value="0" Height="0" FullSweepAngle="240">
+                    <custom:Knob Name="knbGlide" Canvas.Top="8" Canvas.Left="0" Width="70"  ValueMin="0" ValueMax="500" Value="0" Height="0" FullSweepAngle="240">
                         <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
                         <custom:Knob.Caption>GLIDE</custom:Knob.Caption>
                     </custom:Knob>
@@ -34,7 +34,7 @@
                     <Label Foreground="White" HorizontalAlignment="Center" Canvas.Left="42" FontSize="9"  Canvas.Top="78">4</Label>
                     <Label Foreground="White" HorizontalAlignment="Center" Canvas.Left="57" FontSize="9"  Canvas.Top="78">5</Label>
                     <Label Foreground="White" HorizontalAlignment="Center" Canvas.Left="5"  Canvas.Top="97">Poly-gate</Label>
-                    <Button Canvas.Top="123" Width="68" Name="btnInitPatch">Init Patch</Button>
+                    <Button Canvas.Top="123" Height="19" Width="68" Name="btnInitPatch">Init Patch</Button>
                     <Button Canvas.Top="146" Width="68" Name="btnControllers">Controllers</Button>
                     <Button Canvas.Top="169" Width="68" Name="btnOscilliscope">Oscilliscope</Button>
                     

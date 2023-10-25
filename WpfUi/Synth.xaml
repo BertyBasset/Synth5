@@ -34,8 +34,8 @@
             <local:ADSR x:Name="modEnvVCA" Caption=" ENV4 - VCA " Canvas.Left="532" Canvas.Top="220" />
             <local:Effects x:Name="modEffects" Caption=" EFFECTS " Canvas.Left="532" Canvas.Top="325" />
 
-            <Button Name="cmdSave">Save</Button>
-            <Button Name="cmdLoad" Canvas.Left="30">Load</Button>
+            <!--<Button Name="cmdSave">Save</Button>-->
+            <!--<Button Name="cmdLoad" Canvas.Left="30">Load</Button>-->
         </Canvas>
     </ScrollViewer>
 </Window>

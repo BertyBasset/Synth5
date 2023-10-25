@@ -7,6 +7,11 @@ public partial class Keyboard : UserControl {
     #region Event declarations
     // Knob value changed events
     public event EventHandler<double>? GlideChanged;
+
+    public event EventHandler? WaveViewerButtonClicked;
+    public event EventHandler? ControllersButtonClicked;
+
+
     #endregion
 
     #region Public properties
@@ -138,6 +143,9 @@ public partial class Keyboard : UserControl {
         CornerRadius = ModuleTheme.CornerRadius;
 
         knbGlide.ValueChanged += (o, e) => GlideChanged?.Invoke(this, knbGlide.Value);
+
+        btnOscilliscope.Click += (o, e) => WaveViewerButtonClicked?.Invoke(this, new EventArgs());
+        btnControllers.Click += (o, e) => ControllersButtonClicked?.Invoke(this, new EventArgs());
     }
     #endregion
 }
