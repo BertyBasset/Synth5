@@ -10,8 +10,12 @@
     <Canvas Name="cnvDisplay" Background="black">
 
 
-        <CheckBox Name="chkWave"     Content="Waveform" IsChecked="true" Canvas.Right="10" Width="70" Canvas.Bottom="30" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <CheckBox Name="chkSpectrum" Content="Spectrum"                  Canvas.Right="10" Width="70" Canvas.Bottom="10" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <CheckBox   Name="chkWave" Foreground="LightGreen" BorderBrush="LightGreen"   Content="Waveform" IsChecked="true" Canvas.Right="6" Width="70" Canvas.Bottom="30" HorizontalAlignment="Center" VerticalAlignment="Top" Opacity="1">
+            
+            
+            
+        </CheckBox>
+        <CheckBox Name="chkSpectrum" Foreground="Orange" BorderBrush="orange" Content="Spectrum"                  Canvas.Right="6" Width="70" Canvas.Bottom="10" HorizontalAlignment="Center" VerticalAlignment="Top" Opacity="1"/>
         
 
     </Canvas>

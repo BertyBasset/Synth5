@@ -8,13 +8,10 @@ using WpfUi.Utils;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 // To Do
-// 1.  Wave viewer
-//     a. Check boxes
-//     b. Add grid/legend
-// 2.  Controllers setup
-// 3.   Maybe break for Inventory
-// 4.  Patch Save/Load/Init - and categories?
-// 5.  Modulation Section
+// 1.  Controllers setup
+// 2.   Maybe break for Inventory
+// 3.  Patch Save/Load/Init - and categories?
+// 4.  Modulation Section
 
 
 

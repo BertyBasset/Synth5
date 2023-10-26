@@ -23,29 +23,99 @@ public partial class WaveViewer : Window {
 
     }
 
+    Polyline lineWave;
+    Polyline lineSpectrum;
+
     private void Draw(List<double> data) {
-        cnvDisplay.Children.Clear();
+        ClearContent();
+
+        DrawGrid();
 
         if (chkWave.IsChecked == true) {
-            var polylineWave = DrawWave(data);
-            cnvDisplay.Children.Add(polylineWave);
+            DrawWave(data);
+            cnvDisplay.Children.Add(lineWave);
         }
 
-    //    if (chkSpectrum.IsChecked == true) {
-            var polylineSpectrum = DrawSpectrum(data);
-            cnvDisplay.Children.Add(polylineSpectrum);
-      //  }
+        if (chkSpectrum.IsChecked == true) {
+            DrawSpectrum(data);
+            cnvDisplay.Children.Add(lineSpectrum);
+        }
+    }
+
+    void ClearContent() {
+        var polylinesToRemove = cnvDisplay.Children.OfType<Polyline>().ToList();
+        foreach (var polyline in polylinesToRemove) {
+            cnvDisplay.Children.Remove(polyline);
+        }
+        var lines = cnvDisplay.Children.OfType<Line>().ToList();
+        foreach (var line in lines) {
+            cnvDisplay.Children.Remove(line);
+        }
+        var labels = cnvDisplay.Children.OfType<TextBlock>().ToList();
+        foreach (var l in labels) {
+            cnvDisplay.Children.Remove(l);
+        }
+    }
+
+    private void DrawGrid() {
+        double height = cnvDisplay.ActualHeight;
+        double width = cnvDisplay.ActualWidth;
+
+
+        const int COLUMNS = 9;
+        const int ROWS = 6;
+
+        double cellWidth = (width - width/10) / COLUMNS;
+
+
+        for (int i = 0; i <= COLUMNS; i++) {
+            Line verticalLine = new Line {
+                X1 = i * cellWidth,
+                Y1 = 0,
+                X2 = i * cellWidth,
+                Y2 = height,
+                Stroke = Brushes.LightGreen,
+                StrokeThickness = .4
+            };
+            cnvDisplay.Children.Add(verticalLine);
+
+            if (chkSpectrum.IsChecked == true) {
+                var t = new TextBlock {
+                    Text = $"{i * 500}Hz",
+                    Foreground = Brushes.DarkOrange,
+                    FontSize = 12
+                };
+                Canvas.SetLeft(t, i * cellWidth + 5);
+                Canvas.SetTop(t, 5);
+                cnvDisplay.Children.Add(t);
+            }
+        }
+
+        double cellHeight = height / ROWS;
+        for (int i = 1; i < ROWS; i++) {
+            Line horizontalLine = new Line {
+                X1 = 0,
+                Y1 = i * cellHeight,
+                X2 = width,
+                Y2 = i * cellHeight,
+                Stroke = Brushes.LightGreen,
+                StrokeThickness = .4
+            };
+            cnvDisplay.Children.Add(horizontalLine);
+        }
+
 
     }
 
-    private Polyline? DrawWave(List<double> data) {
+
+    private void DrawWave(List<double> data) {
         double canvasWidth = cnvDisplay.ActualWidth;
         double canvasHeight = cnvDisplay.ActualHeight;
 
         if (canvasWidth == 0 || canvasHeight == 0)
-            return null;
+            return;
 
-        var polyline = new Polyline {
+        lineWave = new Polyline {
             Stroke = Brushes.Lime,
             StrokeThickness = 2
         };
@@ -54,12 +124,11 @@ public partial class WaveViewer : Window {
             double x = i * canvasWidth / data.Count * 2;
             double y = (data[i] * canvasHeight * 0.6 + canvasHeight / 2);
 
-            polyline.Points.Add(new Point(x, y));
+            lineWave.Points.Add(new Point(x, y));
         }
-        return polyline;
-    }
+}
 
-    private Polyline? DrawSpectrum(List<double> data) {
+    private void DrawSpectrum(List<double> data) {
         double canvasWidth = cnvDisplay.ActualWidth;
         double canvasHeight = cnvDisplay.ActualHeight;
 
@@ -70,14 +139,13 @@ public partial class WaveViewer : Window {
         if (maxCoeff < .01)
             maxCoeff = 0.01;
 
-        var polyline = new Polyline {
+        lineSpectrum = new Polyline {
             Stroke = Brushes.DarkOrange,
             StrokeThickness = 2
         };
 
         for (int i = 0; i < s.Length; i++)
-            polyline.Points.Add(new Point(i * 7, canvasHeight- (int)((s[i] * canvasHeight * .95 / maxCoeff) - 1)));
-        return polyline;
+            lineSpectrum.Points.Add(new Point(i * 7, canvasHeight- (int)((s[i] * canvasHeight * .95 / maxCoeff) - 1)));
     }
 
 
