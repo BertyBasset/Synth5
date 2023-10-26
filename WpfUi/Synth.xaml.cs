@@ -158,7 +158,7 @@ public partial class SynthUI : Window {
         };
         modKeyboard.ControllersButtonClicked += (o, e) => {
             var c = new Controllers();
-            c.Show();
+            c.ShowDialog();
         };
     }
 

@@ -6,6 +6,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Linq;
+using NAudio.Dmo.Effect;
 
 namespace WpfUi;
 
@@ -23,10 +24,14 @@ public partial class WaveViewer : Window {
 
     }
 
+
+
     Polyline lineWave;
     Polyline lineSpectrum;
 
     private void Draw(List<double> data) {
+
+
         ClearContent();
 
         DrawGrid();

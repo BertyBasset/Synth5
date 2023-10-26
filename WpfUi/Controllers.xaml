@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfUi"
         mc:Ignorable="d"
-        Title="Controllers" Height="450" Width="800">
+        Title="Controllers" Height="390" Width="583" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        >
+    
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15" />
+            <ColumnDefinition Width="*" />
+            <!-- Left column for the StackPanel -->
+            <ColumnDefinition Width="Auto" />
+            <!-- Right column for buttons -->
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" Margin="10,15,0,0">*</TextBlock>
+        <Line Grid.Column="0" X1="7" Y1="18" X2="7" Y2="112" Stroke="black"></Line>
+        <StackPanel  Grid.Column="1">
+            <TextBlock Margin="10,0,0,0">MIDI Controller:          Synth Controller:</TextBlock>
+            <StackPanel Name="stackPanel" Grid.Column="1">
+            <Button Name="btnAdd" Content="Add" Click="AddRow_Click" HorizontalAlignment="Left" Width="75" Height="24" Margin="10,2,0,0"/>
+        </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Button Name="btnSave" Content="Save" Width="75" Margin="0,18,21,0" Height="24"/>
+            <Button Name="btnCancel" Content="Cancel" Width="75" Margin="0 ,10, 21,0" Height="24"/>
+        </StackPanel>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30,0,0,10">* The first 4 controllers will also control a group<LineBreak />of controls in a module when that module is selected.</TextBlock>
     </Grid>
 </Window>
