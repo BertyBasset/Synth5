@@ -1,4 +1,5 @@
 ﻿using Synth.Properties;
+using WpfUi.Patching;
 using WpfUi.Utils;
 
 namespace WpfUi.Modules;

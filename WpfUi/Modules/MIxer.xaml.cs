@@ -1,4 +1,5 @@
-﻿using WpfUi.Utils;
+﻿using WpfUi.Patching;
+using WpfUi.Utils;
 
 namespace WpfUi.Modules;
 public partial class Mixer : UserControl, ISelectableModule {

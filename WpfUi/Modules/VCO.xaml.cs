@@ -1,6 +1,7 @@
 ﻿using Synth;
 using Synth.Properties;
 using System.Text.Json.Serialization;
+using WpfUi.Patching;
 using WpfUi.Utils;
 
 namespace WpfUi.Modules;

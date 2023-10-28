@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace WpfUi.Utils;
+namespace WpfUi.Patching;
 
 [AttributeUsage(AttributeTargets.Property)]
 public class JsonSerializeAttribute : Attribute {
@@ -18,14 +18,14 @@ public class UserControlPropertyInfo {
 }
 
 
-class Patching {
+class Patch {
     #region Save
     public static void SavePatch(string fileName, UIElement parent) {
-        var propertyInfoList = WpfUi.Utils.Patching.SerializeUserControlProperties(parent);
+        var propertyInfoList = SerializeUserControlProperties(parent);
 
         // Serialize the property information to JSON
-        var json = System.Text.Json.JsonSerializer.Serialize(propertyInfoList);
-        System.IO.File.WriteAllText($"Patches\\{fileName}", json);
+        var json = JsonSerializer.Serialize(propertyInfoList);
+        System.IO.File.WriteAllText($"{WpfUi.Utils.Constants.SAVE_LOCATION}patches\\{fileName}", json);
 
     }
 
@@ -61,8 +61,8 @@ class Patching {
 
     #region Retrieve
     public static void LoadPatch(string fileName, Canvas canvas) {
-        var json = System.IO.File.ReadAllText($"Patches\\{fileName}");
-        var propertyInfoList = WpfUi.Utils.Patching.DeserializeFromJson(json);
+        var json = System.IO.File.ReadAllText($"{WpfUi.Utils.Constants.SAVE_LOCATION}patches\\{fileName}");
+        var propertyInfoList = DeserializeFromJson(json);
         if (propertyInfoList == null)
             return;
 
@@ -72,7 +72,7 @@ class Patching {
     }
 
     private static List<UserControlPropertyInfo>? DeserializeFromJson(string json) {
-        return System.Text.Json.JsonSerializer.Deserialize<List<UserControlPropertyInfo>>(json);
+        return JsonSerializer.Deserialize<List<UserControlPropertyInfo>>(json);
     }
 
     private static void ApplyPropertiesToUserControls(Canvas parent, List<UserControlPropertyInfo> propertyInfoList) {

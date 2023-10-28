@@ -29,7 +29,7 @@
 
                     <custom:Knob Name="knbRate1" Canvas.Top="8" Canvas.Left="0" Width="70"  ValueMin="0" ValueMax="1" Value="0" Height="0" FullSweepAngle="240">
                         <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
-                        <custom:Knob.Caption> RATE 1</custom:Knob.Caption>
+                        <custom:Knob.Caption>RATE 1</custom:Knob.Caption>
                     </custom:Knob>
                    
                     <custom:Knob Name="knbShape1" Canvas.Top="8" Canvas.Left="90" Width="70" ValueMin="0" ValueMax="5" NumPositions="6" FullSweepAngle="180" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top">

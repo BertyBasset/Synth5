@@ -66,7 +66,7 @@
                     <custom:Knob.ManualAnnotationRadius>1.7</custom:Knob.ManualAnnotationRadius>
                 </custom:Knob>
 
-                <custom:Knob Name="knbPulseWidth" Canvas.Top="8" Canvas.Left="255" Width="70"  ValueMin="-1" ValueMax="1" Value="0" Height="70" FullSweepAngle="240">
+                <custom:Knob Name="knbPulseWidth" Canvas.Top="8" Canvas.Left="255" Width="70"  ValueMin="-.9" ValueMax=".9" Value="0" Height="70" FullSweepAngle="240">
                     <custom:Knob.AnnotationMode>LabelsAuto</custom:Knob.AnnotationMode>
                     <custom:Knob.Caption>PULSE WIDTH</custom:Knob.Caption>
                 </custom:Knob>

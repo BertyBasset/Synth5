@@ -21,13 +21,14 @@
         <StackPanel  Grid.Column="1">
             <TextBlock Margin="10,0,0,0">MIDI Controller:          Synth Controller:</TextBlock>
             <StackPanel Name="stackPanel" Grid.Column="1">
-            <Button Name="btnAdd" Content="Add" Click="AddRow_Click" HorizontalAlignment="Left" Width="75" Height="24" Margin="10,2,0,0"/>
+            
         </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <Button Name="btnSave" Content="Save" Width="75" Margin="0,18,21,0" Height="24"/>
+            <Button Name="btnSave" Content="Save" Width="75" Margin="0,28,21,0" Height="24"/>
             <Button Name="btnCancel" Content="Cancel" Width="75" Margin="0 ,10, 21,0" Height="24"/>
         </StackPanel>
+        <Button Grid.Column="1" Visibility="Hidden" Name="btnAdd" Content="Add" Click="AddRow_Click" HorizontalAlignment="Left" Width="75" Height="24" Margin="10,298,0,0"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30,0,0,10">* The first 4 controllers will also control a group<LineBreak />of controls in a module when that module is selected.</TextBlock>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
 ﻿using SynthCustomControls;
+using WpfUi.Patching;
 using WpfUi.Utils;
 
 namespace WpfUi.Modules;

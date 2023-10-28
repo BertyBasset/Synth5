@@ -1,6 +1,7 @@
 ﻿using Synth;
 using Synth.Core;
 using System.Windows.Media;
+using WpfUi.Patching;
 using WpfUi.Utils;
 
 namespace WpfUi.Modules;

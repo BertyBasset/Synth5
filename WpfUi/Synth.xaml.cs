@@ -3,13 +3,16 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Windows.Input;
 using System.Xml;
+using WpfUi.MidiControllers;
 using WpfUi.Modules;
 using WpfUi.Utils;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 // To Do
-// 1.  Controllers setup
-// 2.   Maybe break for Inventory
+// 1.  Controllers 
+//     a Llisten and change knobs
+//     b Group mode
+// 2.  Maybe break for Inventory
 // 3.  Patch Save/Load/Init - and categories?
 // 4.  Modulation Section
 
@@ -24,9 +27,13 @@ public partial class SynthUI : Window {
 
     readonly Synth.Patch patch = new();
 
+    readonly List<ControlKnobControllerMapping> _controllerMapping;
+
     #region Constructor
     public SynthUI() {
         InitializeComponent();
+
+        _controllerMapping = ControlKnobControllerMapping.Load();
 
         AddModuleSelectedEventHandlers();
         AddModuleControlsEventHandlers();
@@ -157,7 +164,7 @@ public partial class SynthUI : Window {
             c.Show();
         };
         modKeyboard.ControllersButtonClicked += (o, e) => {
-            var c = new Controllers();
+            var c = new Controllers(_controllerMapping);
             c.ShowDialog();
         };
     }
@@ -246,7 +253,7 @@ public partial class SynthUI : Window {
 
     #region Patch
     void InitPatch() {
-        Patching.LoadPatch("init.json", canvasContent);
+        WpfUi.Patching.Patch.LoadPatch($"{Constants.PATCH_INIT_FILE}", canvasContent);
     }
   
 
