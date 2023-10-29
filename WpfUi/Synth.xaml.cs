@@ -11,12 +11,11 @@ using WpfUi.Utils;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 // To Do
-// 1.  Controllers 
-//       c Group mode
-// 3.  Patch Save/Load/Init - and categories?
-// 4.  Write article
-// 5.  Maybe break for Inventory
-// 6.  Modulation Section
+// 1.  Save/load patch on start/exit
+// 2.  Patch Library with categories?
+// 3.  Write article
+// 4.  Maybe break for Inventory
+// 5.  Modulation Section
 
 
 
@@ -32,7 +31,7 @@ public partial class SynthUI : Window {
     readonly List<ControlKnobControllerMapping> _controllerMapping;
     readonly List<ControlKnob> _controlKnobs;
 
-    string _selectedModuleName;
+    string _selectedModuleName = "";
 
 
     #region Constructor
@@ -71,8 +70,8 @@ public partial class SynthUI : Window {
                 if (knob == null)
                     return;
             } else {
+                // Find nth knob depending on what midi controllers are defined in mapping
                 var knobs = _controlKnobs.FindAll(k => k.ModuleName == _selectedModuleName);
-
                 for(int i = 0; i< _controllerMapping.Count && i< 4; i++) {
                     if (e.ControllerID == _controllerMapping[i].MidiControllerID) { 
                         knob = knobs[i]; break;
@@ -83,10 +82,8 @@ public partial class SynthUI : Window {
             }
 
             var value = (double)e.Value / 127.0 * (knob.Max - knob.Min) + knob.Min;
-
             if (knob.Integral)
                 value = Math.Round(value);
-
 
             this.Dispatcher.Invoke(() => {          // Knob is on different thread
                 var module = this.FindName(knob.ModuleName);
