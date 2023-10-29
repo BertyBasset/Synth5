@@ -79,14 +79,5 @@ public class ControlKnob {
 
         return list;
     }
-
-    public void SetValue(int SynthControlId, double value) {
-        // Pickup control by reflection and set property value
-
-
-        // Maybe this goes in ControllerKnobControllerMapping.cs ???
-
-
-    }
 }
 

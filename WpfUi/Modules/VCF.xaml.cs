@@ -112,6 +112,8 @@ public partial class VCF : UserControl, ISelectableModule {
         set { 
             knbFilterType.Value = value;
             FilterTypeChanged?.Invoke(this, (Enums.FilterType)value);
+
+            UpdateFilterCaption();
         }
     }
 
@@ -164,10 +166,41 @@ public partial class VCF : UserControl, ISelectableModule {
         knbEnvelopeAmount.ValueChanged += (o, e) => EnvelopeAmountChanged?.Invoke(this, knbEnvelopeAmount.Value);
 
         ledSelect.LedChanged += (o, e) => ModuleSelectLedChanged?.Invoke(this, ledSelect.LedOn);
+    
     }
+
+
     #endregion
 
-    private void UpdateFilterCaption() {
+    public void UpdateFilterCaption() {
         lblCaption.Text = " " + _caption.Trim() +" - " + ((Enums.FilterType)knbFilterType.Value).ToString() + " ";
+
+        switch ((Enums.FilterType)knbFilterType.Value) {
+            case Enums.FilterType.RC:
+                knbCutoff.Caption = "CUTOFF";
+                knbResonance.Caption = "-";
+                break;
+            case Enums.FilterType.Butterworth:
+                knbCutoff.Caption = "CUTOFF";
+                knbResonance.Caption = "RESONANCE";
+                break;
+            case Enums.FilterType.Chebyshev:
+                knbCutoff.Caption = "CUTOFF";
+                knbResonance.Caption = "RIPPLE";
+                break;
+            case Enums.FilterType.Bessel:
+                knbCutoff.Caption = "CUTOFF";
+                knbResonance.Caption = "-";
+                break;
+
+            case Enums.FilterType.BandPass:
+            case Enums.FilterType.Notch:
+                knbCutoff.Caption = "FREQUENCY";
+                knbResonance.Caption = "BANDWIDTH";
+                break;
+            default:
+                break;
+        }
+
     }
 }

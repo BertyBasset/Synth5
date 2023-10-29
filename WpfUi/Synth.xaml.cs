@@ -1,4 +1,5 @@
 ﻿using Synth;
+using SynthCustomControls;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
@@ -11,8 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 // To Do
 // 1.  Controllers 
-//       a Group mode
-// 2    Mend patch init
+//       c Group mode
 // 3.  Patch Save/Load/Init - and categories?
 // 4.  Write article
 // 5.  Maybe break for Inventory
@@ -32,6 +32,8 @@ public partial class SynthUI : Window {
     readonly List<ControlKnobControllerMapping> _controllerMapping;
     readonly List<ControlKnob> _controlKnobs;
 
+    string _selectedModuleName;
+
 
     #region Constructor
     public SynthUI() {
@@ -49,6 +51,7 @@ public partial class SynthUI : Window {
         AddPageEventHandlers();
 
         InitPatch();
+        modVCF.UpdateFilterCaption();
     }
     #endregion
 
@@ -57,26 +60,41 @@ public partial class SynthUI : Window {
     #region Controllers Handlers
     private void AddMidiControllersEventHandlers() {
         patch.MidiControllerChanged += (o, e) => {
-            bool groupMode = false;
+            ControlKnob? knob = null;
 
-            if (!groupMode) {
+            if ((_selectedModuleName ?? "") == "") {
                 var knobId = _controllerMapping.Find(map => map.MidiControllerID == e.ControllerID)?.ControlKnobID;
-                if (knobId == null) return;
+                if (knobId == null)
+                    return;
 
-                var knob = _controlKnobs.Find(k => k.ID == knobId);
-                if (knob == null) return;
+                knob = _controlKnobs.Find(k => k.ID == knobId);
+                if (knob == null)
+                    return;
+            } else {
+                var knobs = _controlKnobs.FindAll(k => k.ModuleName == _selectedModuleName);
 
-                var value = (double)e.Value / 127.0 * (knob.Max - knob.Min) + knob.Min;
-
-                this.Dispatcher.Invoke(() => {          // Knob is on different thread
-                    var module = this.FindName(knob.ModuleName);
-                    PropertyInfo? propertyInfo = module.GetType().GetProperty(knob.PropertyName);
-                    if (propertyInfo != null && propertyInfo.PropertyType == typeof(double)) {
-                        propertyInfo.SetValue(module, value);
+                for(int i = 0; i< _controllerMapping.Count && i< 4; i++) {
+                    if (e.ControllerID == _controllerMapping[i].MidiControllerID) { 
+                        knob = knobs[i]; break;
                     }
-                });
+                }
+
+                if (knob == null) return;
             }
-        
+
+            var value = (double)e.Value / 127.0 * (knob.Max - knob.Min) + knob.Min;
+
+            if (knob.Integral)
+                value = Math.Round(value);
+
+
+            this.Dispatcher.Invoke(() => {          // Knob is on different thread
+                var module = this.FindName(knob.ModuleName);
+                PropertyInfo? propertyInfo = module.GetType().GetProperty(knob.PropertyName);
+                if (propertyInfo != null && propertyInfo.PropertyType == typeof(double)) {
+                    propertyInfo.SetValue(module, value);
+                }
+            });
         };
     }
 
@@ -265,10 +283,14 @@ public partial class SynthUI : Window {
                     continue;
 
                 if (userControl is ISelectableModule selectableModule)
-                    selectableModule.ModuleSelectLedOn= false;
+                    selectableModule.ModuleSelectLedOn = false;
             }
             // Enable Midi controller for select module
-        }
+            _selectedModuleName = (o as UserControl)?.Name ?? "";
+        } else
+            _selectedModuleName = "";
+
+
     }
 
     public static List<UserControl> FindUserControls(DependencyObject parent) {

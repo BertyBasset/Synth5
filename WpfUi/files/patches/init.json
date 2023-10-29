@@ -22,12 +22,12 @@
   {
     "UserControlName": "modVCO2",
     "PropertyName": "Frequency",
-    "PropertyValue": 0
+    "PropertyValue": 0.01
   },
   {
     "UserControlName": "modVCO2",
     "PropertyName": "Octave",
-    "PropertyValue": 0
+    "PropertyValue": 1
   },
   {
     "UserControlName": "modVCO2",
@@ -42,7 +42,7 @@
   {
     "UserControlName": "modVCO3",
     "PropertyName": "Frequency",
-    "PropertyValue": 0
+    "PropertyValue": -0.01
   },
   {
     "UserControlName": "modVCO3",
@@ -75,6 +75,12 @@
     "PropertyValue": 1
   },
   {
+    "UserControlName": "modMixer",
+    "PropertyName": "Noise",
+    "PropertyValue": 0
+  },
+
+  {
     "UserControlName": "modEnv1",
     "PropertyName": "Attack",
     "PropertyValue": 0
@@ -87,7 +93,7 @@
   {
     "UserControlName": "modEnv1",
     "PropertyName": "Sustain",
-    "PropertyValue": 0
+    "PropertyValue": 1
   },
   {
     "UserControlName": "modEnv1",
@@ -107,7 +113,7 @@
   {
     "UserControlName": "modEnv2",
     "PropertyName": "Sustain",
-    "PropertyValue": 0
+    "PropertyValue": 1
   },
   {
     "UserControlName": "modEnv2",
@@ -138,7 +144,7 @@
   {
     "UserControlName": "modVCF",
     "PropertyName": "Cutoff",
-    "PropertyValue": 1
+    "PropertyValue": 0.3
   },
   {
     "UserControlName": "modVCF",
@@ -163,12 +169,12 @@
   {
     "UserControlName": "modEnvVCF",
     "PropertyName": "Sustain",
-    "PropertyValue": 0
+    "PropertyValue": 1
   },
   {
     "UserControlName": "modEnvVCF",
     "PropertyName": "Release",
-    "PropertyValue": 1
+    "PropertyValue": 0
   },
   {
     "UserControlName": "modEnvVCA",
@@ -188,7 +194,7 @@
   {
     "UserControlName": "modEnvVCA",
     "PropertyName": "Release",
-    "PropertyValue": 0.2
+    "PropertyValue": 0
   },
   {
     "UserControlName": "modEffects",
@@ -209,37 +215,37 @@
   {
     "UserControlName": "modEffects",
     "PropertyName": "Mix",
-    "PropertyValue": 0
+    "PropertyValue": -1
   },
   {
-    "UserControlName": "modDualLfo",
+    "UserControlName": "modDualLFO",
     "PropertyName": "Rate1",
     "PropertyValue": 0.3
   },
   {
-    "UserControlName": "modDualLfo",
+    "UserControlName": "modDualLFO",
     "PropertyName": "Shape1",
     "PropertyValue": 0
   },
 
   {
-    "UserControlName": "modDualLfo",
+    "UserControlName": "modDualLFO",
     "PropertyName": "Delay1",
     "PropertyValue": 0
   },
   {
-    "UserControlName": "modDualLfo",
+    "UserControlName": "modDualLFO",
     "PropertyName": "Rate2",
-    "PropertyValue": 0.33
+    "PropertyValue": 0.31
   },
   {
-    "UserControlName": "modDualLfo",
+    "UserControlName": "modDualLFO",
     "PropertyName": "Shape2",
     "PropertyValue": 0
   },
 
   {
-    "UserControlName": "modDualLfo",
+    "UserControlName": "modDualLFO",
     "PropertyName": "Delay2",
     "PropertyValue": 0
   }
