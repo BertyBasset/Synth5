@@ -131,15 +131,15 @@ public partial class Controllers : Window {
 
         StackPanel row = new() { Orientation = Orientation.Horizontal };
 
-        ComboBox comboBox1 = new() { Width = 200 , Margin = new Thickness(10, 2, 0, 0), ItemsSource=_cc, DisplayMemberPath="Display", SelectedValuePath="ControllerId", SelectedIndex=0};
+        ComboBox comboBox1 = new() { Width = 196 , Margin = new Thickness(10, 2, 0, 0), ItemsSource=_cc, DisplayMemberPath="Display", SelectedValuePath="ControllerId", SelectedIndex=0};
         if (ControllerID != null)
             comboBox1.SelectedValue = ControllerID;
-        ComboBox comboBox2 = new() { Width = 200, Margin = new Thickness(2, 2, 0, 0), ItemsSource=_knobs, DisplayMemberPath="Description", SelectedValuePath="ID", SelectedIndex=0 };
+        ComboBox comboBox2 = new() { Width = 196, Margin = new Thickness(2, 2, 0, 0), ItemsSource=_knobs, DisplayMemberPath="Description", SelectedValuePath="ID", SelectedIndex=0 };
         if(KnobID != null)
             comboBox2.SelectedValue = KnobID;
         
             
-        Button removeButton = new() { Content = "X" , Width=20, Margin = new Thickness(2, 2, 0, 0) };
+        Button removeButton = new() { Content = "X" , Width=20, Margin = new Thickness(15, 2, 0, 0) };
 
         removeButton.Click += RemoveRow_Click;
         removeButton.Tag = stackPanel.Children.Count; // Set the index

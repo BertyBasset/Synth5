@@ -9,6 +9,7 @@ public partial class Keyboard : UserControl {
     // Knob value changed events
     public event EventHandler<double>? GlideChanged;
 
+
     public event EventHandler? WaveViewerButtonClicked;
     public event EventHandler? ControllersButtonClicked;
 

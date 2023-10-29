@@ -1,4 +1,5 @@
 ﻿using Synth;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Windows.Input;
@@ -10,11 +11,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 // To Do
 // 1.  Controllers 
-//     a Llisten and change knobs
-//     b Group mode
-// 2.  Maybe break for Inventory
+//       a Group mode
+// 2    Mend patch init
 // 3.  Patch Save/Load/Init - and categories?
-// 4.  Modulation Section
+// 4.  Write article
+// 5.  Maybe break for Inventory
+// 6.  Modulation Section
 
 
 
@@ -28,15 +30,21 @@ public partial class SynthUI : Window {
     readonly Synth.Patch patch = new();
 
     readonly List<ControlKnobControllerMapping> _controllerMapping;
+    readonly List<ControlKnob> _controlKnobs;
+
 
     #region Constructor
     public SynthUI() {
         InitializeComponent();
 
         _controllerMapping = ControlKnobControllerMapping.Load();
+        _controlKnobs = ControlKnob.GetList();
+
 
         AddModuleSelectedEventHandlers();
         AddModuleControlsEventHandlers();
+        AddMidiControllersEventHandlers();
+
         AddPatchEventHandlers();
         AddPageEventHandlers();
 
@@ -45,6 +53,35 @@ public partial class SynthUI : Window {
     #endregion
 
     #region Event Handlers
+
+    #region Controllers Handlers
+    private void AddMidiControllersEventHandlers() {
+        patch.MidiControllerChanged += (o, e) => {
+            bool groupMode = false;
+
+            if (!groupMode) {
+                var knobId = _controllerMapping.Find(map => map.MidiControllerID == e.ControllerID)?.ControlKnobID;
+                if (knobId == null) return;
+
+                var knob = _controlKnobs.Find(k => k.ID == knobId);
+                if (knob == null) return;
+
+                var value = (double)e.Value / 127.0 * (knob.Max - knob.Min) + knob.Min;
+
+                this.Dispatcher.Invoke(() => {          // Knob is on different thread
+                    var module = this.FindName(knob.ModuleName);
+                    PropertyInfo? propertyInfo = module.GetType().GetProperty(knob.PropertyName);
+                    if (propertyInfo != null && propertyInfo.PropertyType == typeof(double)) {
+                        propertyInfo.SetValue(module, value);
+                    }
+                });
+            }
+        
+        };
+    }
+
+    #endregion
+
     #region ModuleSelectedEventHandlers
     private void AddModuleSelectedEventHandlers() {
         modVCO1.ModuleSelectLedChanged      += (o, e) => ModuleSelect(o, e);
