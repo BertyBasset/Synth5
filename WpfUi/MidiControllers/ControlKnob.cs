@@ -13,17 +13,17 @@ public class ControlKnob {
     public static List<ControlKnob> GetList() {
         var list = new List<ControlKnob> {
             new ControlKnob() { ID = 0, Description = "[select]" },
-            new ControlKnob() { ID = 1, Description = "VCO1 Frequency", ModuleName = "modVCO1", PropertyName = "Frequency", Min = -.0083, Max = .0083 },
+            new ControlKnob() { ID = 1, Description = "VCO1 Frequency", ModuleName = "modVCO1", PropertyName = "Frequency", Min = -.083, Max = .083 },
             new ControlKnob() { ID = 2, Description = "VCO1 Octave", ModuleName = "modVCO1", PropertyName = "Octave", Min = 0, Max = 3, Integral = true },
             new ControlKnob() { ID = 3, Description = "VCO1 Waveform", ModuleName = "modVCO1", PropertyName = "Waveform", Min = 0, Max = 5, Integral = true },
             new ControlKnob() { ID = 4, Description = "VCO1 Pulse Width", ModuleName = "modVCO1", PropertyName = "PulseWidth", Min = -.9, Max = .9 },
 
-            new ControlKnob() { ID = 5, Description = "VCO2 Frequency", ModuleName = "modVCO2", PropertyName = "Frequency", Min = -.0083, Max = .0083 },
+            new ControlKnob() { ID = 5, Description = "VCO2 Frequency", ModuleName = "modVCO2", PropertyName = "Frequency", Min = -.083, Max = .083 },
             new ControlKnob() { ID = 6, Description = "VCO2 Octave", ModuleName = "modVCO2", PropertyName = "Octave", Min = 0, Max = 3, Integral = true },
             new ControlKnob() { ID = 7, Description = "VCO2 Waveform", ModuleName = "modVCO2", PropertyName = "Waveform", Min = 0, Max = 5, Integral = true },
             new ControlKnob() { ID = 8, Description = "VCO2 Pulse Width", ModuleName = "modVCO2", PropertyName = "PulseWidth", Min = -.9, Max = .9 },
 
-            new ControlKnob() { ID = 9, Description = "VCO2 Frequency", ModuleName = "modVCO3", PropertyName = "Frequency", Min = -.0083, Max = .0083 },
+            new ControlKnob() { ID = 9, Description = "VCO2 Frequency", ModuleName = "modVCO3", PropertyName = "Frequency", Min = -.083, Max = .083 },
             new ControlKnob() { ID = 10, Description = "VCO3 Octave", ModuleName = "modVCO3", PropertyName = "Octave", Min = 0, Max = 3, Integral = true },
             new ControlKnob() { ID = 11, Description = "VCO3 Waveform", ModuleName = "modVCO3", PropertyName = "Waveform", Min = 0, Max = 5, Integral = true },
             new ControlKnob() { ID = 12, Description = "VCO3 Pulse Width", ModuleName = "modVCO3", PropertyName = "PulseWidth", Min = -.9, Max = .9 },
@@ -43,13 +43,13 @@ public class ControlKnob {
             new ControlKnob() { ID = 23, Description = "Env2 Sustain", ModuleName = "modEnv2", PropertyName = "Sustain", Min = 0, Max = 1 },
             new ControlKnob() { ID = 24, Description = "Env2 Release", ModuleName = "modEnv2", PropertyName = "Release", Min = 0, Max = 5 },
 
-            new ControlKnob() { ID = 25, Description = "LFO 1 Rate", ModuleName = "modDualLfo", PropertyName = "Rate1", Min = 0, Max = 1 },
-            new ControlKnob() { ID = 26, Description = "LFO 1 Shape", ModuleName = "modDualLfo", PropertyName = "Rate1", Min = 0, Max = 5, Integral = true },
-            new ControlKnob() { ID = 27, Description = "LFO 1 Delay", ModuleName = "modDualLfo", PropertyName = "Delay1", Min = 0, Max = 5 },
+            new ControlKnob() { ID = 25, Description = "LFO 1 Rate", ModuleName = "modDualLFO", PropertyName = "Rate1", Min = 0, Max = 1 },
+            new ControlKnob() { ID = 26, Description = "LFO 1 Shape", ModuleName = "modDualLFO", PropertyName = "Shape1", Min = 0, Max = 5, Integral = true },
+            new ControlKnob() { ID = 27, Description = "LFO 1 Delay", ModuleName = "modDualLFO", PropertyName = "Delay1", Min = 0, Max = 5 },
 
-            new ControlKnob() { ID = 28, Description = "LFO 2 Rate", ModuleName = "modDualLfo", PropertyName = "Rate2", Min = 0, Max = 1 },
-            new ControlKnob() { ID = 29, Description = "LFO 2 Shape", ModuleName = "modDualLfo", PropertyName = "Rate2", Min = 0, Max = 5, Integral = true },
-            new ControlKnob() { ID = 30, Description = "LFO 2 Delay", ModuleName = "modDualLfo", PropertyName = "Delay2", Min = 0, Max = 5 },
+            new ControlKnob() { ID = 28, Description = "LFO 2 Rate", ModuleName = "modDualLFO", PropertyName = "Rate2", Min = 0, Max = 1 },
+            new ControlKnob() { ID = 29, Description = "LFO 2 Shape", ModuleName = "modDualLFO", PropertyName = "Shape2", Min = 0, Max = 5, Integral = true },
+            new ControlKnob() { ID = 30, Description = "LFO 2 Delay", ModuleName = "modDualLFO", PropertyName = "Delay2", Min = 0, Max = 5 },
 
             new ControlKnob() { ID = 31, Description = "Keyboard Glide", ModuleName = "modKeyboard", PropertyName = "Glide", Min = 0, Max = 500 },
 
@@ -71,9 +71,9 @@ public class ControlKnob {
             new ControlKnob() { ID = 44, Description = "VCA Sustain", ModuleName = "modEnvVCA", PropertyName = "Sustain", Min = 0, Max = 1 },
             new ControlKnob() { ID = 45, Description = "VCA Release", ModuleName = "modEnvVCA", PropertyName = "Release", Min = 0, Max = 5 },
 
-            new ControlKnob() { ID = 46, Description = "Effects Type", ModuleName = "modEffects", PropertyName = "EffectType", Min = 0, Max = 5 },
+            new ControlKnob() { ID = 46, Description = "Effects Type", ModuleName = "modEffects", PropertyName = "EffectType", Min = 0, Max = 5, Integral=true },
             new ControlKnob() { ID = 47, Description = "Effects Gain", ModuleName = "modEffects", PropertyName = "Gain", Min = 0, Max = 1 },
-            new ControlKnob() { ID = 48, Description = "Effects Frequency", ModuleName = "modEffects", PropertyName = "Gain", Min = 0, Max = 1 },
+            new ControlKnob() { ID = 48, Description = "Effects Frequency", ModuleName = "modEffects", PropertyName = "Frequency", Min = 0, Max = 1 },
             new ControlKnob() { ID = 49, Description = "Effects Mix", ModuleName = "modEffects", PropertyName = "Mix", Min = -1, Max = 1 }
         };
 

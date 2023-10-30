@@ -1,14 +1,9 @@
 ﻿using Synth;
-using SynthCustomControls;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text.Json;
 using System.Windows.Input;
-using System.Xml;
 using WpfUi.MidiControllers;
 using WpfUi.Modules;
 using WpfUi.Utils;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 // To Do
 // 1.  Save/load patch on start/exit
@@ -16,8 +11,6 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 // 3.  Write article
 // 4.  Maybe break for Inventory
 // 5.  Modulation Section
-
-
 
 namespace WpfUi;
 
@@ -33,14 +26,12 @@ public partial class SynthUI : Window {
 
     string _selectedModuleName = "";
 
-
     #region Constructor
     public SynthUI() {
         InitializeComponent();
 
         _controllerMapping = ControlKnobControllerMapping.Load();
         _controlKnobs = ControlKnob.GetList();
-
 
         AddModuleSelectedEventHandlers();
         AddModuleControlsEventHandlers();
@@ -49,7 +40,6 @@ public partial class SynthUI : Window {
         AddPatchEventHandlers();
         AddPageEventHandlers();
 
-        InitPatch();
         modVCF.UpdateFilterCaption();
     }
     #endregion
@@ -72,10 +62,27 @@ public partial class SynthUI : Window {
             } else {
                 // Find nth knob depending on what midi controllers are defined in mapping
                 var knobs = _controlKnobs.FindAll(k => k.ModuleName == _selectedModuleName);
-                for(int i = 0; i< _controllerMapping.Count && i< 4; i++) {
-                    if (e.ControllerID == _controllerMapping[i].MidiControllerID) { 
-                        knob = knobs[i]; break;
+
+                // Double loop is for skipping knobs for modDualLFO
+                for(int i = 0, j = 0;  j < knobs.Count; i++, j++) {
+                    if (_selectedModuleName == "modDualLFO") {
+                        if (j == 1 || j==4)     // Skip Shape for LFO - just do Rate and Delay
+                            j++;
                     }
+
+                    if (e.ControllerID == _controllerMapping[i].MidiControllerID) { 
+                        knob = knobs[j]; break;
+                    }
+                }
+
+                // If we've not found anything corresponding to the first 4 items in the group, look at normal
+                // controller mapping  .e.g. Item 5 will typically be Mod Wheel patched mapped to something
+                if (knob == null) {
+                    var knobId = _controllerMapping.Find(map => map.MidiControllerID == e.ControllerID)?.ControlKnobID;
+                    if (knobId == null)
+                        return;
+
+                    knob = _controlKnobs.Find(k => k.ID == knobId);
                 }
 
                 if (knob == null) return;
@@ -87,9 +94,15 @@ public partial class SynthUI : Window {
 
             this.Dispatcher.Invoke(() => {          // Knob is on different thread
                 var module = this.FindName(knob.ModuleName);
+                if(module == null) return;
+
                 PropertyInfo? propertyInfo = module.GetType().GetProperty(knob.PropertyName);
                 if (propertyInfo != null && propertyInfo.PropertyType == typeof(double)) {
-                    propertyInfo.SetValue(module, value);
+                    try {
+                        propertyInfo.SetValue(module, value);
+                    } catch (Exception ex) {
+                        int a = 2;      // We occasioally get a mysterious no sequence error
+                    }
                 }
             });
         };
@@ -116,8 +129,6 @@ public partial class SynthUI : Window {
 
     #region Module Controls Event Handlers
     private void AddModuleControlsEventHandlers() {
-        
-
         modVCO1.FrequencyChanged      += (v, frequency)  => patch.Vco1FineTune       = frequency;
         modVCO1.OctaveChanged         += (v, octave)     => patch.Vco1Octave         = octave;
         modVCO1.WaveformChanged       += (v, waveform)   => patch.Vco1WaveFormType   = waveform;
@@ -186,7 +197,6 @@ public partial class SynthUI : Window {
         modEnvVCA.DecayChanged        += (e, decay)      => patch.VcaEnvDecay        = decay;
         modEnvVCA.SustainChanged      += (e, sustain)    => patch.VcaEnvSustain      = sustain;
         modEnvVCA.ReleaseChanged      += (e, release)    => patch.VcaEnvRelease      = release;
-
     }
 
     private void AddPatchEventHandlers() { 
@@ -201,6 +211,8 @@ public partial class SynthUI : Window {
 
     #region Page Event Handlers
     void AddPageEventHandlers() {
+
+        // Zoom and Pan Events
         canvasContent.PreviewMouseWheel += CanvasContent_PreviewMouseWheel;
         canvasContent.PreviewMouseDown += CanvasContent_PreviewMouseDown;
         canvasContent.PreviewMouseUp += CanvasContent_PreviewMouseUp;
@@ -219,6 +231,14 @@ public partial class SynthUI : Window {
             var c = new Controllers(_controllerMapping);
             c.ShowDialog();
         };
+
+        modKeyboard.InitPatchButtonClicked += (o, e) => InitPatch();
+
+
+        this.Activated += (o, e) => { LoadAutoSavePatch(); };
+        this.Closed += (o, e) => { SaveAutoSavePatch(); };
+
+
     }
 
     private void CanvasContent_MouseRightButtonDown(object sender, MouseButtonEventArgs e) {
@@ -286,8 +306,6 @@ public partial class SynthUI : Window {
             _selectedModuleName = (o as UserControl)?.Name ?? "";
         } else
             _selectedModuleName = "";
-
-
     }
 
     public static List<UserControl> FindUserControls(DependencyObject parent) {
@@ -311,9 +329,13 @@ public partial class SynthUI : Window {
     void InitPatch() {
         WpfUi.Patching.Patch.LoadPatch($"{Constants.PATCH_INIT_FILE}", canvasContent);
     }
-  
 
+    void LoadAutoSavePatch() {
+        WpfUi.Patching.Patch.LoadPatch($"{Constants.PATCH_AUTOSAVE_FILE}", canvasContent);
+    }
 
+    void SaveAutoSavePatch() {
+        WpfUi.Patching.Patch.SavePatch($"{Constants.PATCH_AUTOSAVE_FILE}", canvasContent);
+    }
     #endregion
-
 }

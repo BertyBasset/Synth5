@@ -108,8 +108,6 @@ public partial class WaveViewer : Window {
             };
             cnvDisplay.Children.Add(horizontalLine);
         }
-
-
     }
 
 
@@ -127,7 +125,7 @@ public partial class WaveViewer : Window {
 
         for (int i = 0; i < data.Count; i++) {
             double x = i * canvasWidth / data.Count * 2;
-            double y = (data[i] * canvasHeight * 0.6 + canvasHeight / 2);
+            double y = (data[i] * canvasHeight * 0.4 + canvasHeight / 2);
 
             lineWave.Points.Add(new Point(x, y));
         }

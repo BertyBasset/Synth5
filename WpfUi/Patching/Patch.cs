@@ -61,7 +61,16 @@ class Patch {
 
     #region Retrieve
     public static void LoadPatch(string fileName, Canvas canvas) {
-        var json = System.IO.File.ReadAllText($"{WpfUi.Utils.Constants.SAVE_LOCATION}patches\\{fileName}");
+        var fName = $"{WpfUi.Utils.Constants.SAVE_LOCATION}patches\\{fileName}";
+
+
+        // If not found, load init patch instead
+        if (!System.IO.File.Exists(fName))
+            fName = $"{WpfUi.Utils.Constants.SAVE_LOCATION}patches\\{WpfUi.Utils.Constants.PATCH_INIT_FILE}";
+
+        var json = System.IO.File.ReadAllText(fName);
+        
+        
         var propertyInfoList = DeserializeFromJson(json);
         if (propertyInfoList == null)
             return;
