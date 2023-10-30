@@ -26,8 +26,8 @@ public partial class WaveViewer : Window {
 
 
 
-    Polyline lineWave;
-    Polyline lineSpectrum;
+    Polyline? lineWave;
+    Polyline? lineSpectrum;
 
     private void Draw(List<double> data) {
 
@@ -74,7 +74,7 @@ public partial class WaveViewer : Window {
 
 
         for (int i = 0; i <= COLUMNS; i++) {
-            Line verticalLine = new Line {
+            Line verticalLine = new() {
                 X1 = i * cellWidth,
                 Y1 = 0,
                 X2 = i * cellWidth,
@@ -98,7 +98,7 @@ public partial class WaveViewer : Window {
 
         double cellHeight = height / ROWS;
         for (int i = 1; i < ROWS; i++) {
-            Line horizontalLine = new Line {
+            Line horizontalLine = new () {
                 X1 = 0,
                 Y1 = i * cellHeight,
                 X2 = width,

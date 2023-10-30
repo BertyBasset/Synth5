@@ -6,10 +6,9 @@ using WpfUi.Modules;
 using WpfUi.Utils;
 
 // To Do
-// 1.  Save/load patch on start/exit
-// 2.  Patch Library with categories?
+// 1.  Patch Library with categories?
 // 3.  Write article
-// 4.  Maybe break for Inventory
+// 4.  Maybe break for Inventory and/or C
 // 5.  Modulation Section
 
 namespace WpfUi;
@@ -41,13 +40,36 @@ public partial class SynthUI : Window {
         AddPageEventHandlers();
 
         modVCF.UpdateFilterCaption();
+
+        InitPatchManagement();
+
     }
+
+    private void InitPatchManagement() { 
+        var banks = Patching.Patch.GetBanksList();
+        cboBanks.ItemsSource = banks;
+    }
+
+    private void BankChanged() { 
+        var bank = cboBanks.SelectedItem;
+        var patches = Patching.Patch.GetPatchListForBank(bank.ToString() ?? "");
+        cboPatches.ItemsSource = patches;
+    }
+
+    private void PatchChanged() {
+        var patch = cboPatches.SelectedItem;
+        if(patch == null) return;
+
+        Patching.Patch.LoadPatch($"{patch}.json", canvasContent);
+    }
+
+
     #endregion
 
     #region Event Handlers
 
     #region Controllers Handlers
-    private void AddMidiControllersEventHandlers() {
+        private void AddMidiControllersEventHandlers() {
         patch.MidiControllerChanged += (o, e) => {
             ControlKnob? knob = null;
 
@@ -100,8 +122,8 @@ public partial class SynthUI : Window {
                 if (propertyInfo != null && propertyInfo.PropertyType == typeof(double)) {
                     try {
                         propertyInfo.SetValue(module, value);
-                    } catch (Exception ex) {
-                        int a = 2;      // We occasioally get a mysterious no sequence error
+                    } catch (Exception) {
+                        // We occasioally get a mysterious no sequence error
                     }
                 }
             });
@@ -232,13 +254,13 @@ public partial class SynthUI : Window {
             c.ShowDialog();
         };
 
-        modKeyboard.InitPatchButtonClicked += (o, e) => InitPatch();
-
+        btnInit.Click += (o, e) => InitPatch();
 
         this.Activated += (o, e) => { LoadAutoSavePatch(); };
         this.Closed += (o, e) => { SaveAutoSavePatch(); };
 
-
+        cboBanks.SelectionChanged += (o, e) => BankChanged();
+        cboPatches.SelectionChanged += (o, e) => PatchChanged();
     }
 
     private void CanvasContent_MouseRightButtonDown(object sender, MouseButtonEventArgs e) {

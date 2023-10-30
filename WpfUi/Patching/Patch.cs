@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using WpfUi.Utils;
+using Constants = WpfUi.Utils.Constants;
 
 namespace WpfUi.Patching;
 
@@ -34,7 +38,7 @@ class Patch {
         var propertyInfoList = new List<UserControlPropertyInfo>();
 
         foreach (UIElement element in LogicalTreeHelper.GetChildren(parent).OfType<UIElement>()) {
-            if (element is UserControl userControl) {
+            if (element is System.Windows.Controls.UserControl userControl) {
                 string userControlName = userControl.Name;
 
                 var properties = userControl.GetType().GetProperties();
@@ -61,12 +65,12 @@ class Patch {
 
     #region Retrieve
     public static void LoadPatch(string fileName, Canvas canvas) {
-        var fName = $"{WpfUi.Utils.Constants.SAVE_LOCATION}patches\\{fileName}";
+        var fName = $"{WpfUi.Utils.Constants.PATCH_LOCATION}{fileName}";
 
 
         // If not found, load init patch instead
         if (!System.IO.File.Exists(fName))
-            fName = $"{WpfUi.Utils.Constants.SAVE_LOCATION}patches\\{WpfUi.Utils.Constants.PATCH_INIT_FILE}";
+            fName = $"{WpfUi.Utils.Constants.PATCH_LOCATION}{WpfUi.Utils.Constants.PATCH_INIT_FILE}";
 
         var json = System.IO.File.ReadAllText(fName);
         
@@ -86,7 +90,7 @@ class Patch {
 
     private static void ApplyPropertiesToUserControls(Canvas parent, List<UserControlPropertyInfo> propertyInfoList) {
         foreach (UIElement child in parent.Children) {
-            if (child is UserControl userControl) {
+            if (child is System.Windows.Controls.UserControl userControl) {
                 string userControlName = userControl.Name;
                 var userControlType = userControl.GetType();
 
@@ -109,4 +113,20 @@ class Patch {
         }
     }
     #endregion
+
+    public static List<string> GetBanksList() {
+        // Where banks are subfolder
+        var patchRoot = $"{Constants.PATCH_LOCATION}";
+        var folders = System.IO.Directory.GetDirectories(patchRoot);
+        return folders.Select(f => System.IO.Path.GetFileName(f)).ToList();
+    }
+
+    public static List<string> GetPatchListForBank(string Bank) {
+        // Where banks are subfolder
+        var bankRoot = $"{Constants.PATCH_LOCATION}{Bank}";
+
+        var files = System.IO.Directory.GetFiles(bankRoot, "*.json");
+        return files.Select(f => System.IO.Path.GetFileNameWithoutExtension(f)).ToList();
+    }
+
 }

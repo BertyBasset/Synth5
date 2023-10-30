@@ -149,7 +149,6 @@ public partial class Keyboard : UserControl {
 
         btnOscilliscope.Click += (o, e) => WaveViewerButtonClicked?.Invoke(this, new EventArgs());
         btnControllers.Click += (o, e) => ControllersButtonClicked?.Invoke(this, new EventArgs());
-        btnInitPatch.Click += (O, e) => InitPatchButtonClicked?.Invoke(this, new EventArgs());
     }
     #endregion
 }
