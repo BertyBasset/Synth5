@@ -22,13 +22,12 @@
         <Canvas Name="canvasContent">
             <TextBlock Canvas.Left="10" Canvas.Top="10" Foreground="White">Bank:</TextBlock>
             <ComboBox Name="cboBanks" Canvas.Left="45" Canvas.Top="7" Width="120" Background="#ADD82F"></ComboBox>
-            <Button Name="btnManageBanks" Canvas.Left="168" Canvas.Top="7" Foreground="White" Width="70" Height="22">Manage...</Button>
-            <TextBlock Canvas.Left="264" Canvas.Top="10" Foreground="White">Patch:</TextBlock>
-            <ComboBox Name="cboPatches" Canvas.Left="304" Canvas.Top="7" Width="120"  Background="#ADD82F" ></ComboBox>
+            <TextBlock Canvas.Left="184" Canvas.Top="10" Foreground="White">Patch:</TextBlock>
+            <ComboBox Name="cboPatches" Canvas.Left="224" Canvas.Top="7" Width="120"  Background="#ADD82F" ></ComboBox>
 
-            <Button Name="btnSave" Canvas.Left="427" Canvas.Top="7" Foreground="White" Width="70" Height="22">Save...</Button>
-            <Button Name="btnManagePatches" Canvas.Left="500" Canvas.Top="7" Foreground="White" Width="70" Height="22">Manage...</Button>
-            <Button Name="btnInit" Canvas.Left="573" Canvas.Top="7" Foreground="White" Width="70" Height="22">Init</Button>
+            <Button Name="btnSave" Canvas.Left="350" Canvas.Top="7" Foreground="White" Width="70" Height="22">Save...</Button>
+            <Button Name="btnManagePatches" Canvas.Left="425" Canvas.Top="7" Foreground="White" Width="70" Height="22">Manage...</Button>
+            <Button Name="btnInit" Canvas.Left="500" Canvas.Top="7" Foreground="White" Width="70" Height="22">Init</Button>
 
             <local:VCO x:Name="modVCO1" Caption=" VCO 1 " Canvas.Left="10" Canvas.Top="40"  />
             <local:VCO x:Name="modVCO2" Caption=" VCO 2 " Canvas.Left="10" Canvas.Top="145" />

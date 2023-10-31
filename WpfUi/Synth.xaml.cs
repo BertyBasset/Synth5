@@ -1,5 +1,6 @@
 ﻿using Synth;
 using System.Reflection;
+using System.Windows;
 using System.Windows.Input;
 using WpfUi.MidiControllers;
 using WpfUi.Modules;
@@ -7,6 +8,10 @@ using WpfUi.Utils;
 
 // To Do
 // 1.  Patch Library with categories?
+//   a Check if exists
+//   b Patch not saving/loading
+//   c Manage Patches  Bank and Patch Management
+//   d Visuals LCD
 // 3.  Write article
 // 4.  Maybe break for Inventory and/or C
 // 5.  Modulation Section
@@ -50,7 +55,11 @@ public partial class SynthUI : Window {
         cboBanks.ItemsSource = banks;
     }
 
-    private void BankChanged() { 
+    private void BankChanged() {
+        LoadPatches();
+    }
+
+    void LoadPatches() {
         var bank = cboBanks.SelectedItem;
         var patches = Patching.Patch.GetPatchListForBank(bank.ToString() ?? "");
         cboPatches.ItemsSource = patches;
@@ -256,11 +265,14 @@ public partial class SynthUI : Window {
 
         btnInit.Click += (o, e) => InitPatch();
 
-        this.Activated += (o, e) => { LoadAutoSavePatch(); };
+        this.Loaded += (o, e) => { LoadAutoSavePatch(); };
         this.Closed += (o, e) => { SaveAutoSavePatch(); };
 
         cboBanks.SelectionChanged += (o, e) => BankChanged();
         cboPatches.SelectionChanged += (o, e) => PatchChanged();
+
+        btnSave.Click += (o, e) => SavePatch();
+        btnManagePatches.Click += (o, e) => ManagePatches();
     }
 
     private void CanvasContent_MouseRightButtonDown(object sender, MouseButtonEventArgs e) {
@@ -358,6 +370,28 @@ public partial class SynthUI : Window {
 
     void SaveAutoSavePatch() {
         WpfUi.Patching.Patch.SavePatch($"{Constants.PATCH_AUTOSAVE_FILE}", canvasContent);
+    }
+
+    void SavePatch() {
+        var f = new SaveDetails((string)cboBanks.SelectedValue, (string)cboPatches.SelectedValue);
+        f.ShowDialog();
+        var patchSpec = f.rv;
+        if (patchSpec == null)
+            return;
+
+        Patching.Patch.SavePatch(patchSpec.PatchPath, canvasContent);
+        cboBanks.SelectedValue = patchSpec.BankName;
+        LoadPatches();
+
+        cboPatches.SelectedValue = patchSpec.PatchName;
+
+    }
+
+    void ManageBanks() { 
+    
+    }
+    void ManagePatches() { 
+    
     }
     #endregion
 }

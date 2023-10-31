@@ -12,7 +12,7 @@ public partial class Keyboard : UserControl {
 
     public event EventHandler? WaveViewerButtonClicked;
     public event EventHandler? ControllersButtonClicked;
-    public event EventHandler? InitPatchButtonClicked;
+
 
 
     #endregion
