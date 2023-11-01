@@ -8,10 +8,9 @@ using WpfUi.Utils;
 
 // To Do
 // 1.  Patch Library with categories?
-//   a Check if exists
-//   b Patch not saving/loading
-//   c Manage Patches  Bank and Patch Management
-//   d Visuals LCD
+//   a Patch not saving/loading
+//   b Manage Patches  Bank and Patch Management
+//   c Visuals LCD
 // 3.  Write article
 // 4.  Maybe break for Inventory and/or C
 // 5.  Modulation Section
@@ -50,27 +49,7 @@ public partial class SynthUI : Window {
 
     }
 
-    private void InitPatchManagement() { 
-        var banks = Patching.Patch.GetBanksList();
-        cboBanks.ItemsSource = banks;
-    }
 
-    private void BankChanged() {
-        LoadPatches();
-    }
-
-    void LoadPatches() {
-        var bank = cboBanks.SelectedItem;
-        var patches = Patching.Patch.GetPatchListForBank(bank.ToString() ?? "");
-        cboPatches.ItemsSource = patches;
-    }
-
-    private void PatchChanged() {
-        var patch = cboPatches.SelectedItem;
-        if(patch == null) return;
-
-        Patching.Patch.LoadPatch($"{patch}.json", canvasContent);
-    }
 
 
     #endregion
@@ -251,9 +230,6 @@ public partial class SynthUI : Window {
         this.MouseRightButtonDown += CanvasContent_MouseRightButtonDown;
         canvasContent.MouseRightButtonDown += CanvasContent_MouseRightButtonDown;
 
-        //cmdSave.Click += (o, e) => Patching.SavePatch("init.json", canvasContent);
-        //cmdLoad.Click += (o, e) => Patching.LoadPatch("init.json", canvasContent);
-
         modKeyboard.WaveViewerButtonClicked += (o, e) => {
             var c = new WaveViewer(patch.SynthEngine);
             c.Show();
@@ -360,6 +336,36 @@ public partial class SynthUI : Window {
     #endregion
 
     #region Patch
+    private void InitPatchManagement() {
+        var banks = Patching.Patch.GetBanksList();
+        cboBanks.ItemsSource = banks;
+    }
+
+    private void BankChanged() {
+        LoadPatches();
+    }
+
+    void LoadPatches() {
+        var bank = cboBanks.SelectedItem;
+        var patches = Patching.Patch.GetPatchListForBank(bank.ToString() ?? "");
+        cboPatches.ItemsSource = patches;
+    }
+
+    private void PatchChanged() {
+        var patch = cboPatches.SelectedItem;
+        if (patch == null)
+            return;
+
+        var bank = cboBanks.SelectedItem;
+        if (bank== null)
+            return;
+        LoadPatch((string)bank, (string)patch);
+    }
+
+    void LoadPatch(string Bank, string PatchName) {
+        Patching.Patch.LoadPatch($"{Bank}\\{PatchName}.json", canvasContent);
+    }
+
     void InitPatch() {
         WpfUi.Patching.Patch.LoadPatch($"{Constants.PATCH_INIT_FILE}", canvasContent);
     }
@@ -387,11 +393,13 @@ public partial class SynthUI : Window {
 
     }
 
-    void ManageBanks() { 
-    
-    }
-    void ManagePatches() { 
-    
+    void ManagePatches() {
+        // Save current bank and patch somewhere
+        
+        PatchManager m = new();
+        m.ShowDialog();
+
+        // Reload banks and patches
     }
     #endregion
 }

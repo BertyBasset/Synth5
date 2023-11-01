@@ -1,0 +1,27 @@
+﻿<Window x:Class="WpfUi.PatchManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfUi"
+        mc:Ignorable="d"
+        Title="Patch Manager" Height="450" Width="593"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        >
+    <Canvas>
+        <TextBlock Canvas.Left="20">Banks:</TextBlock>
+        <ListBox Name="lstBanks" Canvas.Left="20" Canvas.Top="20" Width="200" Height="300"></ListBox>
+        <Button Canvas.Left="20" Canvas.Top="325" Width="65" Height="24" Name="btnAddBank">Add...</Button>
+        <Button Canvas.Left="87" Canvas.Top="325" Width="65" Height="24" Name="btnRenameBank">Rename...</Button>
+        <Button Canvas.Left="154" Canvas.Top="325" Width="65" Height="24" Name="btnDeleteBank">Delete...</Button>
+
+        <TextBlock Canvas.Left="243" Canvas.Top="130">Drag patches from<LineBreak/>the Patches List to<LineBreak/>the Banks List to<LineBreak/>change Bank</TextBlock>
+        <Button Canvas.Left="360" Canvas.Top="325" Width="95" Height="24" Name="btnDeletePatch">Delete...</Button>
+        <Button Canvas.Left="465" Canvas.Top="325" Width="95" Height="24" Name="btnRenamePatch">Rename...</Button>
+        <Button Canvas.Left="245" Canvas.Top="365" Width="95" Height="24" Name="btnClose">Close</Button>
+        
+        
+        <TextBlock Canvas.Left="360">Patches:</TextBlock>
+        <ListBox Name="lstPatches" Canvas.Left="360" Canvas.Top="20" Width="200" Height="300"></ListBox>
+    </Canvas>
+</Window>

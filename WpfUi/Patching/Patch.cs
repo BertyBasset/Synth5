@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -85,7 +86,12 @@ class Patch {
     }
 
     private static List<UserControlPropertyInfo>? DeserializeFromJson(string json) {
-        return JsonSerializer.Deserialize<List<UserControlPropertyInfo>>(json);
+        try {
+            return JsonSerializer.Deserialize<List<UserControlPropertyInfo>>(json);
+        } catch  {
+            System.Windows.MessageBox.Show("Invalid Json", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            return null;
+        }
     }
 
     private static void ApplyPropertiesToUserControls(Canvas parent, List<UserControlPropertyInfo> propertyInfoList) {
