@@ -74,8 +74,8 @@ class Patch {
             fName = $"{WpfUi.Utils.Constants.PATCH_LOCATION}{WpfUi.Utils.Constants.PATCH_INIT_FILE}";
 
         var json = System.IO.File.ReadAllText(fName);
-        
-        
+
+
         var propertyInfoList = DeserializeFromJson(json);
         if (propertyInfoList == null)
             return;
@@ -88,7 +88,7 @@ class Patch {
     private static List<UserControlPropertyInfo>? DeserializeFromJson(string json) {
         try {
             return JsonSerializer.Deserialize<List<UserControlPropertyInfo>>(json);
-        } catch  {
+        } catch {
             System.Windows.MessageBox.Show("Invalid Json", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             return null;
         }
@@ -135,4 +135,20 @@ class Patch {
         return files.Select(f => System.IO.Path.GetFileNameWithoutExtension(f)).ToList();
     }
 
+    public static void CreateBank(string BankName) {
+        System.IO.Directory.CreateDirectory($"{Constants.PATCH_LOCATION}{BankName}");
+    }
+
+    public static void RenameBank(string OldBankName, string NewBankName) {
+        System.IO.Directory.Move($"{Constants.PATCH_LOCATION}{OldBankName}", $"{Constants.PATCH_LOCATION}{NewBankName}");
+    }
+
+    public static void RenamePatch(string BankName, string OldPatchName, string NewPatchName) {
+        // Strip json off names, in case theyre there
+
+        OldPatchName = System.IO.Path.GetFileNameWithoutExtension(OldPatchName) + ".json";
+        NewPatchName = System.IO.Path.GetFileNameWithoutExtension(NewPatchName) + ".json";
+
+        System.IO.File.Move($"{Constants.PATCH_LOCATION}{BankName}\\{OldPatchName}", $"{Constants.PATCH_LOCATION}{BankName}\\{NewPatchName}");
+    }
 }

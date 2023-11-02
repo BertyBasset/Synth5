@@ -7,13 +7,16 @@ using WpfUi.Modules;
 using WpfUi.Utils;
 
 // To Do
-// 1.  Patch Library with categories?
-//   a Patch not saving/loading
-//   b Manage Patches  Bank and Patch Management
-//   c Visuals LCD
-// 3.  Write article
-// 4.  Maybe break for Inventory and/or C
-// 5.  Modulation Section
+// 1.  Delete Patch
+// 2.  Delete Bank - patch deletion warning
+// 3.  Drag patch to move
+// 4   Combobox LCD
+// 5.  Write article
+// 6.  Maybe break for Inventory and/or C
+// 7.  Modulation Section  -  Thinking about just a Knob on input to modulated parameter. 
+//                            2 VCAs
+//                            2 3 way mixers
+//                            4 Scalars  (Knob with text box for FSD)
 
 namespace WpfUi;
 
@@ -46,6 +49,8 @@ public partial class SynthUI : Window {
         modVCF.UpdateFilterCaption();
 
         InitPatchManagement();
+
+
 
     }
 
@@ -346,6 +351,11 @@ public partial class SynthUI : Window {
     }
 
     void LoadPatches() {
+        if (cboBanks.SelectedItem == null) {
+            cboPatches.ItemsSource = null;
+            return;
+        }
+        
         var bank = cboBanks.SelectedItem;
         var patches = Patching.Patch.GetPatchListForBank(bank.ToString() ?? "");
         cboPatches.ItemsSource = patches;
@@ -395,11 +405,25 @@ public partial class SynthUI : Window {
 
     void ManagePatches() {
         // Save current bank and patch somewhere
-        
+
+        string? currenBank = cboBanks.SelectedValue == null ? null : (string)cboBanks.SelectedValue;
+        string? currenPatch = cboPatches.SelectedValue == null ? null : (string)cboPatches.SelectedValue;
+
+
         PatchManager m = new();
         m.ShowDialog();
 
         // Reload banks and patches
+        InitPatchManagement();
+
+        try {
+            cboBanks.SelectedValue = currenBank;
+            BankChanged();
+        } catch (Exception) { }
+
+        try {
+            cboPatches.SelectedValue = currenPatch;
+        } catch (Exception) { }
     }
     #endregion
 }

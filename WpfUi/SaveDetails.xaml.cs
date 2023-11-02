@@ -19,8 +19,8 @@ namespace WpfUi {
     /// Interaction logic for SaveDetails.xaml
     /// </summary>
     public partial class SaveDetails : Window {
-        string _Patch;
-        string _Bank;
+        readonly string _Patch;
+        readonly string _Bank;
 
         public class FileSpec {
             public string BankName { get; set; } = "";
@@ -107,12 +107,11 @@ namespace WpfUi {
             }
 
 
-
-
             // Save
-            rv = new();
-            rv.BankName = bankName;
-            rv.PatchName = patchName;
+            rv = new() {
+                BankName = bankName,
+                PatchName = patchName
+            };
             rv.PatchPath = rv.BankName + "\\" + rv.PatchName + ".json";
             this.Close();
         }
