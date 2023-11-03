@@ -7,13 +7,10 @@ using WpfUi.Modules;
 using WpfUi.Utils;
 
 // To Do
-// 1.  Delete Patch
-// 2.  Delete Bank - patch deletion warning
-// 3.  Drag patch to move
-// 4   Combobox LCD
-// 5.  Write article
-// 6.  Maybe break for Inventory and/or C
-// 7.  Modulation Section  -  Thinking about just a Knob on input to modulated parameter. 
+// 1   Combobox LCD
+// 2.  Write article
+// 3.  Maybe break for Inventory and/or C
+// 4.  Modulation Section  -  Thinking about just a Knob on input to modulated parameter. 
 //                            2 VCAs
 //                            2 3 way mixers
 //                            4 Scalars  (Knob with text box for FSD)
@@ -49,7 +46,6 @@ public partial class SynthUI : Window {
         modVCF.UpdateFilterCaption();
 
         InitPatchManagement();
-
 
 
     }
@@ -343,6 +339,7 @@ public partial class SynthUI : Window {
     #region Patch
     private void InitPatchManagement() {
         var banks = Patching.Patch.GetBanksList();
+        cboBanks.Items.Clear();
         cboBanks.ItemsSource = banks;
     }
 

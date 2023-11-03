@@ -120,6 +120,7 @@ class Patch {
     }
     #endregion
 
+    #region Patch Management
     public static List<string> GetBanksList() {
         // Where banks are subfolder
         var patchRoot = $"{Constants.PATCH_LOCATION}";
@@ -143,6 +144,10 @@ class Patch {
         System.IO.Directory.Move($"{Constants.PATCH_LOCATION}{OldBankName}", $"{Constants.PATCH_LOCATION}{NewBankName}");
     }
 
+    public static void DeleteBank(string BankName) {
+        System.IO.Directory.Delete($"{Constants.PATCH_LOCATION}{BankName}", true);
+    }
+
     public static void RenamePatch(string BankName, string OldPatchName, string NewPatchName) {
         // Strip json off names, in case theyre there
 
@@ -151,4 +156,26 @@ class Patch {
 
         System.IO.File.Move($"{Constants.PATCH_LOCATION}{BankName}\\{OldPatchName}", $"{Constants.PATCH_LOCATION}{BankName}\\{NewPatchName}");
     }
+
+    public static void DeletePatch(string BankName, string PatchName) {
+        PatchName = System.IO.Path.GetFileNameWithoutExtension(PatchName) + ".json";
+        System.IO.File.Delete($"{Constants.PATCH_LOCATION}{BankName}\\{PatchName}");
+    }
+
+    public static void MovePatch(string SourceBank, string DestBank, string PatchName) { 
+        string sourceFile = $"{Constants.PATCH_LOCATION}{SourceBank}\\{System.IO.Path.GetFileNameWithoutExtension(PatchName)}.json";
+        string destFile = $"{Constants.PATCH_LOCATION}{DestBank}\\{System.IO.Path.GetFileNameWithoutExtension(PatchName)}.json";
+        System.IO.File.Move(sourceFile , destFile );
+    }
+
+    public static void CopyPatch(string Bank, string SourceName, string DestName) {
+        string sourceFile = $"{Constants.PATCH_LOCATION}{Bank}\\{System.IO.Path.GetFileNameWithoutExtension(SourceName)}.json";
+        string destFile = $"{Constants.PATCH_LOCATION}{Bank}\\{System.IO.Path.GetFileNameWithoutExtension(DestName)}.json";
+        System.IO.File.Copy(sourceFile, destFile);
+    }
+     
+
+
+    #endregion
+
 }

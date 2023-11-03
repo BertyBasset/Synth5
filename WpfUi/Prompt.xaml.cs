@@ -10,6 +10,7 @@ public partial class Prompt : Window {
     public enum ModeType { 
         AddBank,
         RenameBank,
+        CopyPatch,
         RenamePatch,
     }
 
@@ -25,6 +26,7 @@ public partial class Prompt : Window {
         switch (Mode) {
             case ModeType.AddBank: Title = "Add Bank"; lblTitle.Content = "Bank Name:"; break;
             case ModeType.RenameBank: Title = "Rename Bank"; lblTitle.Content = "Bank Name:"; txtName.Text = CurrentBankName; break;
+            case ModeType.CopyPatch: Title = "Copy Patch"; lblTitle.Content = "Patch Name:"; txtName.Text = CurrentPatchName + " (copy of)"; break;
             case ModeType.RenamePatch: Title = "Rename Patch"; lblTitle.Content = "Patch Name:"; txtName.Text = CurrentPatchName; break;
             default: break;
         }
@@ -63,7 +65,7 @@ public partial class Prompt : Window {
         }
 
         // Check patch exists if renaming
-        if (_mode == ModeType.RenamePatch) {
+        if (_mode == ModeType.RenamePatch || _mode == ModeType.CopyPatch) {
             var existingPatches = Patching.Patch.GetPatchListForBank(_currentBankName??"");
             if (existingPatches.FirstOrDefault(s => s.Equals(txtName.Text, StringComparison.OrdinalIgnoreCase)) != null) {
                 MessageBox.Show($"Patch '{txtName.Text}' already exists in Bank '{_currentBankName}'.", "Save", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -72,8 +74,6 @@ public partial class Prompt : Window {
                 return;
             }
         }
-
-
 
         NewName = txtName.Text;
         DialogResult = true;

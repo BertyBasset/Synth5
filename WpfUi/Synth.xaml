@@ -16,12 +16,19 @@
                 <ResourceDictionary Source="/Themes/Prophet.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+
         </ResourceDictionary>
+
+
     </Window.Resources>
     <ScrollViewer Name="scrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Canvas Name="canvasContent">
             <TextBlock Canvas.Left="10" Canvas.Top="10" Foreground="White">Bank:</TextBlock>
-            <ComboBox Name="cboBanks" Canvas.Left="45" Canvas.Top="7" Width="120" Background="#ADD82F"></ComboBox>
+            <ComboBox Name="cboBanks" Canvas.Left="45" Canvas.Top="7" Width="120">
+                <ComboBox.Background>
+                    <ImageBrush/>
+                </ComboBox.Background> asd
+            </ComboBox>
             <TextBlock Canvas.Left="184" Canvas.Top="10" Foreground="White">Patch:</TextBlock>
             <ComboBox Name="cboPatches" Canvas.Left="224" Canvas.Top="7" Width="120"  Background="#ADD82F" ></ComboBox>
 

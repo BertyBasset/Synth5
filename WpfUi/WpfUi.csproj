@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="icons\add_icon.png" />
+    <None Remove="icons\copy_icon.png" />
     <None Remove="icons\delete_icon.png" />
     <None Remove="icons\rename_icon.png" />
     <None Remove="KnobResources\ReverseSaw.png" />
@@ -27,6 +28,7 @@
 
   <ItemGroup>
     <Resource Include="icons\add_icon.png" />
+    <Resource Include="icons\copy_icon.png" />
     <Resource Include="icons\delete_icon.png" />
     <Resource Include="icons\rename_icon.png" />
     <Resource Include="KnobResources\ReverseSaw.png" />

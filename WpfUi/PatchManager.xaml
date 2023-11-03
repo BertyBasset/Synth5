@@ -9,14 +9,15 @@
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         >
     <Window.Resources>
-        <Image x:Key="AddIcon" Source="icons/add_icon.png" Width="16" Height="16" />
+        <Image x:Key="CopyIcon"   Source="icons/copy_icon.png" Width="16" Height="16" />
+        <Image x:Key="AddIcon"    Source="icons/add_icon.png" Width="16" Height="16" />
         <Image x:Key="DeleteIcon" Source="icons/delete_icon.png" Width="16" Height="16" />
         <Image x:Key="RenameIcon" Source="icons/rename_icon.png" Width="16" Height="16" />
     </Window.Resources>
     
     <Canvas>
         <TextBlock Canvas.Left="20">Banks:</TextBlock>
-        <ListBox Name="lstBanks" Canvas.Left="20" Canvas.Top="20" Width="200" Height="300">
+        <ListBox Name="lstBanks" Canvas.Left="20" Canvas.Top="20" Width="200" Height="300" AllowDrop="True" Drop="LstBanks_Drop" DragOver="LstBanks_DragOver">
             <ListBox.ContextMenu>
                 <ContextMenu>
                     <MenuItem x:Name="AddBankMenuItem" Header="Add Bank">
@@ -42,15 +43,23 @@
         <Button Canvas.Left="154" Canvas.Top="325" Width="65" Height="24" Name="btnDeleteBank" IsEnabled="False">Delete...</Button>
 
         <TextBlock Canvas.Left="243" Canvas.Top="130">Drag patches from<LineBreak/>the Patches List to<LineBreak/>the Banks List to<LineBreak/>change Bank</TextBlock>
-        <Button Canvas.Left="360" Canvas.Top="325" Width="95" Height="24" Name="btnRenamePatch" IsEnabled="False">Rename...</Button>
-        <Button Canvas.Left="465" Canvas.Top="325" Width="95" Height="24" Name="btnDeletePatch" IsEnabled="False">Delete...</Button>
+        <Button Canvas.Left="360" Canvas.Top="325" Width="65" Height="24" Name="btnCopyPatch" IsEnabled="False">Copy...</Button>
+        <Button Canvas.Left="427" Canvas.Top="325" Width="65" Height="24" Name="btnRenamePatch" IsEnabled="False">Rename...</Button>
+        <Button Canvas.Left="495" Canvas.Top="325" Width="65" Height="24" Name="btnDeletePatch" IsEnabled="False">Delete...</Button>
+        
         <Button Canvas.Left="245" Canvas.Top="365" Width="95" Height="24" Name="btnClose">Close</Button>
         
         
         <TextBlock Canvas.Left="360">Patches:</TextBlock>
-        <ListBox Name="lstPatches" Canvas.Left="360" Canvas.Top="20" Width="200" Height="300">
+        <ListBox Name="lstPatches" Canvas.Left="360" Canvas.Top="20" Width="200" Height="300" AllowDrop="True" PreviewMouseLeftButtonDown="LstPatches_PreviewMouseLeftButtonDown" PreviewMouseMove="LstPatches_PreviewMouseMove">
             <ListBox.ContextMenu>
                 <ContextMenu>
+                    <MenuItem x:Name="CopyPatchMenuItem" Header="Copy Patch">
+                        <MenuItem.Icon>
+                            <StaticResource ResourceKey="CopyIcon" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+
                     <MenuItem x:Name="RenamePatchMenuItem" Header="Rename Patch">
                         <MenuItem.Icon>
                             <StaticResource ResourceKey="RenameIcon" />
