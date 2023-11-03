@@ -1,6 +1,6 @@
 # Synth5
 
-In this version, we've kept the modules, patching and polyphony from Synth4, but have replaced the Win Forms UI with a WPF UI.
+In this version, we've kept the modules, patching and polyphony from Synth4, but have replaced the Win Forms UI with a WPF UI. Synth 5 is discussed further in my Blog https://shedlab.co.uk/2023/11/05/c-virtual-synth-the-wpf-ui/
 
 Main Features
 - Migrated UI to WPF using the Knob Custom Control from https://github.com/BertyBasset/SynthCustomControls
