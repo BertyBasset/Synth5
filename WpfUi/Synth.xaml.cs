@@ -338,6 +338,7 @@ public partial class SynthUI : Window {
 
     #region Patch
     private void InitPatchManagement() {
+        cboBanks.ItemsSource = null;
         var banks = Patching.Patch.GetBanksList();
         cboBanks.Items.Clear();
         cboBanks.ItemsSource = banks;

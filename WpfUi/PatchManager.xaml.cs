@@ -280,7 +280,7 @@ public partial class PatchManager : Window {
         } else {
             if (MessageBox.Show($"Bank '{BankName}' contains {patchesInBank.Count} Patches. Are you sure you want to delete bank?", "Delete Bank", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No) 
                 return;
-            if (MessageBox.Show($"Please confirm. Dlete bank '{BankName}' ?", "Delete Bank", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No) 
+            if (MessageBox.Show($"Please confirm. Delete bank '{BankName}' ?", "Delete Bank", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No) 
                 return;
         }
 
