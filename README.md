@@ -13,4 +13,9 @@ Synth6 and Beyond. Once the Modulation Matrix has been completed, then it'll be 
 - Drum Synthesis
 - Sequencing
 
-  
+![Theme1](https://raw.githubusercontent.com/BertyBasset/Synth5/b333f52bab68a9b277e20ae4c828a6bf3187e586/ReadMeImages/Skin1.png)
+
+![Theme2](https://raw.githubusercontent.com/BertyBasset/Synth5/b333f52bab68a9b277e20ae4c828a6bf3187e586/ReadMeImages/Skin2.png))
+
+![Theme3](https://raw.githubusercontent.com/BertyBasset/Synth5/b333f52bab68a9b277e20ae4c828a6bf3187e586/ReadMeImages/Skin3.png)
+
