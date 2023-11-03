@@ -272,7 +272,12 @@ public partial class PatchManager : Window {
     void DeleteBank(string BankName) {
         if (string.IsNullOrWhiteSpace(BankName))
             return;
-     
+
+        if (lstBanks.Items.Count <= 1) {
+            MessageBox.Show("There must be at least one Banks defined", "Delete Bank", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            return;
+        }
+
         var patchesInBank = Patching.Patch.GetPatchListForBank(BankName);
         if (patchesInBank.Count == 0) {
             if (MessageBox.Show($"Delete Bank '{BankName}' ?", "Delete Bank", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
