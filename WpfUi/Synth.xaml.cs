@@ -7,10 +7,8 @@ using WpfUi.Modules;
 using WpfUi.Utils;
 
 // To Do
-// 1   Combobox LCD
-// 2.  Write article
-// 3.  Maybe break for Inventory and/or C
-// 4.  Modulation Section  -  Thinking about just a Knob on input to modulated parameter. 
+// 1.  Maybe break for Inventory and/or C
+// 2.  Modulation Section  -  Thinking about just a Knob on input to modulated parameter. 
 //                            2 VCAs
 //                            2 3 way mixers
 //                            4 Scalars  (Knob with text box for FSD)
@@ -44,6 +42,7 @@ public partial class SynthUI : Window {
         AddPageEventHandlers();
 
         modVCF.UpdateFilterCaption();
+        modEffects.UpdateEffectsCaption();
 
         InitPatchManagement();
 

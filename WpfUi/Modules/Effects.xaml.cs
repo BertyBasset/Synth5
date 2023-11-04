@@ -117,6 +117,8 @@ public partial class Effects : UserControl, ISelectableModule {
         set { 
             knbEffectType.Value = value;
             EffectTypeChanged?.Invoke(this, (Enums.EffectType)  value);
+
+            UpdateEffectsCaption();
         }
     }
 
@@ -174,7 +176,7 @@ public partial class Effects : UserControl, ISelectableModule {
     }
     #endregion
 
-    private void UpdateEffectsCaption() {
+    public void UpdateEffectsCaption() {
         lblCaption.Text = " " + _caption.Trim() + " - " + ((Enums.EffectType)knbEffectType.Value).ToString().ToCapitalizedWithSpaces() + " ";
     }
 
