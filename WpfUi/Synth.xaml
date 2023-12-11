@@ -13,7 +13,7 @@
         <ResourceDictionary>
             <!-- Merge the Prophet.xaml theme -->
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Themes/Prophet.xaml"/>
+                <ResourceDictionary Source="/Themes/Oberheim.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
 

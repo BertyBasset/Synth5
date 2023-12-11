@@ -59,12 +59,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Synth.Modules\Synth.Modules.csproj" />
     <ProjectReference Include="..\Synth.Patch\Synth.Patch.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="SynthCustomControls">
-      <HintPath>Dlls\SynthCustomControls.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\SynthCustomControls\SynthCustomControls\SynthCustomControls.csproj" />
   </ItemGroup>
 
   <ItemGroup>
